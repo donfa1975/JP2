@@ -6,10 +6,12 @@
 package clases;
 
 import java.util.List;
+import javax.naming.InitialContext;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+import javax.transaction.UserTransaction;
 import modelo.*;
 
 /**
@@ -49,6 +51,35 @@ public class clsParametros {
 		_tipoDiag=q5.getResultList();
 		
 		
+	}
+	//////////////////////////////////
+	public TblAreas getMiArea(int idarea)
+	{
+		
+		TblAreas ar=_areas.stream().filter(a -> idarea== a.getIdArea()).findAny().orElse(null);
+		
+		return ar;
+	}
+	//////////////////////////////////
+	public String addArea(TblAreas area)
+	{
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("JP2PU");
+        EntityManager em = emf.createEntityManager();
+		
+		try {
+			area.setIdArea(0);
+			UserTransaction t = (UserTransaction)new InitialContext().lookup("java:comp/UserTransaction");
+			t.begin();
+			em.joinTransaction();
+			
+			em.persist(area);
+			t.commit();
+			em.close();
+			emf.close();
+			} catch (Exception ex) {
+			return ex.getMessage();
+		}
+		return "ok";
 	}
 	
 //<editor-fold desc="propiedades">

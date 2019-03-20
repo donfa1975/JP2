@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:h="http://java.sun.com/jsf/html"
+       xmlns:f="http://java.sun.com/jsf/core"
+       xmlns:ui="http://java.sun.com/jsf/facelets"
+       xmlns:p="http://primefaces.org/ui">
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+				<meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>ASOCIACION NUESTRA FAMILIA</title>
+				<h:outputStylesheet library="css" name="login.css" />
+               </f:facet>
+        </h:head>
+
+        <h:body>
+            <div class="caja1"> 
+                <div >
+				  <p:graphicImage library="images" name="logo_Ing.png"/>
+                </div>
+                <div id="centro">
+                    <h:form>
+                        <p:fieldset legend="Login" >
+                            <p:panelGrid columns="2">
+								<h:outputText value="Usuario:"/>
+								<h:inputText value="#{marsBean.usuario}" />
+								<h:outputText value="Contraseña"/>
+								<h:inputSecret value="#{marsBean.pwd}"/>
+                            </p:panelGrid>
+                        </p:fieldset>
+						<br/>
+						<h:commandButton value="Continuar" action="#{marsBean.validar()}" style="margin-left: 50px;"/>
+					    <br/>
+						<br/>
+						<h:outputText id="mensaje" value="#{marsBean.cifrado}" class="claseError"/>
+                    </h:form>
+					<br/>
+					<br/>
+					<br/>
+                </div>
+            </div>
+            <br />
+        </h:body>
+    </f:view>
+</html>

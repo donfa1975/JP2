@@ -1,0 +1,1124 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<jpa:entity-mappings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:java="http://jcp.org/en/jsr/detail?id=270" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:jpa="http://java.sun.com/xml/ns/persistence/orm" pkg="modelo" v="1.5.4" xs="false" id="_15531771026421" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_2_1.xsd">
+    <jpa:default-class abs="false" class="VwPacientePK" visibile="true" minimized="false">
+        <jpa:embeddable>false</jpa:embeddable>
+        <jpa:attribute attribute-type="String" visibile="true" name="codigo"/>
+        <jpa:attribute attribute-type="int" visibile="true" name="idPaciente"/>
+    </jpa:default-class>
+    <jpa:default-class abs="false" class="VwMatriculadosPK" visibile="true" minimized="false">
+        <jpa:embeddable>false</jpa:embeddable>
+        <jpa:attribute attribute-type="int" visibile="true" name="idPaciente"/>
+        <jpa:attribute attribute-type="String" visibile="true" name="numMat"/>
+    </jpa:default-class>
+    <jpa:default-class abs="false" class="VwDiagnosticosPK" visibile="true" minimized="false">
+        <jpa:embeddable>false</jpa:embeddable>
+        <jpa:attribute attribute-type="int" visibile="true" name="idTipoDiagnostico"/>
+        <jpa:attribute attribute-type="Integer" visibile="true" name="idPaciente"/>
+    </jpa:default-class>
+    <jpa:entity xre="false" sm="false" abs="false" class="TblOrigenes" visibile="true" minimized="false" rootElement="_15531771026421" id="_15531771026752">
+        <annotation n="@javax.xml.bind.annotation.XmlRootElement"/>
+        <jpa:attributes>
+            <basic attribute-type="String" visibile="true" name="origen" id="_15531771026774">
+                <an n="@javax.validation.constraints.Size(max=150)"/>
+                <jpa:column name="Origen" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <one-to-many own="false" collection-type="java.util.Collection" connected-entity-id="_155317710294868" connected-attribute-id="_155317710295485" visibile="true" name="tblPacientesCollection" id="_15531771026775"/>
+            <jpa:id attribute-type="Integer" visibile="true" name="idorigen" id="_15531771026763">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <jpa:column name="idorigen" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:generated-value strategy="IDENTITY"/>
+                <jpa:sequence-generator name="idorigen"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq name="TblOrigenes.findAll">
+            <jpa:query>SELECT t FROM TblOrigenes t</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="TblOrigenes.findByIdorigen">
+            <jpa:query>SELECT t FROM TblOrigenes t WHERE t.idorigen = :idorigen</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="TblOrigenes.findByOrigen">
+            <jpa:query>SELECT t FROM TblOrigenes t WHERE t.origen = :origen</jpa:query>
+        </jpa:nq>
+        <jpa:table name="tblOrigenes"/>
+    </jpa:entity>
+    <jpa:entity xre="false" sm="false" abs="false" class="TblZonas" visibile="true" minimized="false" rootElement="_15531771026421" id="_15531771027066">
+        <annotation n="@javax.xml.bind.annotation.XmlRootElement"/>
+        <jpa:attributes>
+            <basic attribute-type="String" visibile="true" name="zona" id="_15531771027078">
+                <an n="@javax.validation.constraints.Size(max=150)"/>
+                <jpa:column name="Zona" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <basic attribute-type="Integer" visibile="true" name="idcanton" id="_15531771027079">
+                <jpa:column name="idcanton" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <one-to-many own="false" collection-type="java.util.Collection" connected-entity-id="_155317710294868" connected-attribute-id="_155317710295486" visibile="true" name="tblPacientesCollection" id="_155317710270710"/>
+            <jpa:id attribute-type="Integer" visibile="true" name="idZona" id="_15531771027077">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <jpa:column name="idZona" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:generated-value strategy="IDENTITY"/>
+                <jpa:sequence-generator name="idZona"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq name="TblZonas.findAll">
+            <jpa:query>SELECT t FROM TblZonas t</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="TblZonas.findByIdZona">
+            <jpa:query>SELECT t FROM TblZonas t WHERE t.idZona = :idZona</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="TblZonas.findByZona">
+            <jpa:query>SELECT t FROM TblZonas t WHERE t.zona = :zona</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="TblZonas.findByIdcanton">
+            <jpa:query>SELECT t FROM TblZonas t WHERE t.idcanton = :idcanton</jpa:query>
+        </jpa:nq>
+        <jpa:table name="tblZonas"/>
+    </jpa:entity>
+    <jpa:entity xre="false" sm="false" abs="false" class="TblAreas" visibile="true" minimized="false" rootElement="_15531771026421" id="_155317710274211">
+        <annotation n="@javax.xml.bind.annotation.XmlRootElement"/>
+        <jpa:attributes>
+            <basic attribute-type="String" visibile="true" name="area" id="_155317710274213">
+                <an n="@javax.validation.constraints.Size(max=350)"/>
+                <jpa:column name="Area" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <one-to-many own="false" collection-type="java.util.Collection" connected-entity-id="_155317710294868" connected-attribute-id="_155317710295383" visibile="true" name="tblPacientesCollection" id="_155317710274214"/>
+            <jpa:id attribute-type="Integer" visibile="true" name="idArea" id="_155317710274212">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <jpa:column name="idArea" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:generated-value strategy="IDENTITY"/>
+                <jpa:sequence-generator name="idArea"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq name="TblAreas.findAll">
+            <jpa:query>SELECT t FROM TblAreas t</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="TblAreas.findByIdArea">
+            <jpa:query>SELECT t FROM TblAreas t WHERE t.idArea = :idArea</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="TblAreas.findByArea">
+            <jpa:query>SELECT t FROM TblAreas t WHERE t.area = :area</jpa:query>
+        </jpa:nq>
+        <jpa:table name="tblAreas"/>
+    </jpa:entity>
+    <jpa:entity xre="false" sm="false" abs="false" class="TblTipoDiagnostico" visibile="true" minimized="false" rootElement="_15531771026421" id="_155317710277015">
+        <annotation n="@javax.xml.bind.annotation.XmlRootElement"/>
+        <jpa:attributes>
+            <basic attribute-type="String" visibile="true" name="codigo" id="_155317710277017">
+                <an n="@javax.validation.constraints.Size(max=10)"/>
+                <jpa:column name="Codigo" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <basic attribute-type="String" visibile="true" name="diagnostico" id="_155317710277018">
+                <an n="@javax.validation.constraints.Size(max=400)"/>
+                <jpa:column name="Diagnostico" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <one-to-many own="false" collection-type="java.util.Collection" connected-entity-id="_155317710286134" connected-attribute-id="_155317710286139" visibile="true" name="tblDiagnotiscosCollection" id="_155317710277019"/>
+            <jpa:id attribute-type="Integer" visibile="true" name="idTipoDiagnostico" id="_155317710277016">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <jpa:column name="idTipoDiagnostico" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:generated-value strategy="IDENTITY"/>
+                <jpa:sequence-generator name="idTipoDiagnostico"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq name="TblTipoDiagnostico.findAll">
+            <jpa:query>SELECT t FROM TblTipoDiagnostico t</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="TblTipoDiagnostico.findByIdTipoDiagnostico">
+            <jpa:query>SELECT t FROM TblTipoDiagnostico t WHERE t.idTipoDiagnostico = :idTipoDiagnostico</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="TblTipoDiagnostico.findByCodigo">
+            <jpa:query>SELECT t FROM TblTipoDiagnostico t WHERE t.codigo = :codigo</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="TblTipoDiagnostico.findByDiagnostico">
+            <jpa:query>SELECT t FROM TblTipoDiagnostico t WHERE t.diagnostico = :diagnostico</jpa:query>
+        </jpa:nq>
+        <jpa:table name="tblTipoDiagnostico"/>
+    </jpa:entity>
+    <jpa:entity xre="false" sm="false" abs="false" class="TblCitas" visibile="true" minimized="false" rootElement="_15531771026421" id="_155317710280020">
+        <annotation n="@javax.xml.bind.annotation.XmlRootElement"/>
+        <jpa:attributes>
+            <basic attribute-type="java.util.Date" visibile="true" name="fecha" id="_155317710280022">
+                <jpa:column name="fecha" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:temporal>DATE</jpa:temporal>
+            </basic>
+            <basic attribute-type="String" visibile="true" name="hora" id="_155317710280023">
+                <an n="@javax.validation.constraints.Size(max=5)"/>
+                <jpa:column name="hora" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <basic optional="false" attribute-type="java.util.Date" visibile="true" name="fechaReg" id="_155317710280024">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <jpa:column name="fechaReg" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:temporal>TIMESTAMP</jpa:temporal>
+            </basic>
+            <basic attribute-type="Integer" visibile="true" name="idusuario" id="_155317710280125">
+                <jpa:column name="idusuario" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <basic attribute-type="Boolean" visibile="true" name="ejecutada" id="_155317710280126">
+                <jpa:column name="ejecutada" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <basic attribute-type="String" visibile="true" name="numeroCita" id="_155317710280127">
+                <an n="@javax.validation.constraints.Size(max=20)"/>
+                <jpa:column name="numeroCita" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <many-to-one primaryKey="false" connected-entity-id="_155317710288241" connected-attribute-id="_155317710288245" visibile="true" name="idAccion" id="_155317710280128">
+                <join-column name="idAccion" referenced-column="_155317710288242" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </many-to-one>
+            <many-to-one primaryKey="false" connected-entity-id="_155317710294868" connected-attribute-id="_155317710295488" visibile="true" name="idPaciente" id="_155317710280129">
+                <join-column name="idPaciente" referenced-column="_155317710294869" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </many-to-one>
+            <jpa:id attribute-type="Integer" visibile="true" name="idCita" id="_155317710280021">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <jpa:column name="idCita" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:generated-value strategy="IDENTITY"/>
+                <jpa:sequence-generator name="idCita"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq name="TblCitas.findAll">
+            <jpa:query>SELECT t FROM TblCitas t</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="TblCitas.findByIdCita">
+            <jpa:query>SELECT t FROM TblCitas t WHERE t.idCita = :idCita</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="TblCitas.findByFecha">
+            <jpa:query>SELECT t FROM TblCitas t WHERE t.fecha = :fecha</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="TblCitas.findByHora">
+            <jpa:query>SELECT t FROM TblCitas t WHERE t.hora = :hora</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="TblCitas.findByFechaReg">
+            <jpa:query>SELECT t FROM TblCitas t WHERE t.fechaReg = :fechaReg</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="TblCitas.findByIdusuario">
+            <jpa:query>SELECT t FROM TblCitas t WHERE t.idusuario = :idusuario</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="TblCitas.findByEjecutada">
+            <jpa:query>SELECT t FROM TblCitas t WHERE t.ejecutada = :ejecutada</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="TblCitas.findByNumeroCita">
+            <jpa:query>SELECT t FROM TblCitas t WHERE t.numeroCita = :numeroCita</jpa:query>
+        </jpa:nq>
+        <jpa:table name="tblCitas"/>
+    </jpa:entity>
+    <jpa:entity xre="false" sm="false" abs="false" class="TblSetupRep" visibile="true" minimized="false" rootElement="_15531771026421" id="_155317710284230">
+        <annotation n="@javax.xml.bind.annotation.XmlRootElement"/>
+        <jpa:attributes>
+            <basic attribute-type="String" visibile="true" name="servidor" id="_155317710284332">
+                <an n="@javax.validation.constraints.Size(max=2147483647)"/>
+                <jpa:column name="servidor" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <basic attribute-type="String" visibile="true" name="ruta" id="_155317710284333">
+                <an n="@javax.validation.constraints.Size(max=2147483647)"/>
+                <jpa:column name="ruta" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <jpa:id attribute-type="Integer" visibile="true" name="idSetup" id="_155317710284231">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <jpa:column name="idSetup" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:generated-value strategy="IDENTITY"/>
+                <jpa:sequence-generator name="idSetup"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq name="TblSetupRep.findAll">
+            <jpa:query>SELECT t FROM TblSetupRep t</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="TblSetupRep.findByIdSetup">
+            <jpa:query>SELECT t FROM TblSetupRep t WHERE t.idSetup = :idSetup</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="TblSetupRep.findByServidor">
+            <jpa:query>SELECT t FROM TblSetupRep t WHERE t.servidor = :servidor</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="TblSetupRep.findByRuta">
+            <jpa:query>SELECT t FROM TblSetupRep t WHERE t.ruta = :ruta</jpa:query>
+        </jpa:nq>
+        <jpa:table name="tblSetupRep"/>
+    </jpa:entity>
+    <jpa:entity xre="false" sm="false" abs="false" class="TblDiagnotiscos" visibile="true" minimized="false" rootElement="_15531771026421" id="_155317710286134">
+        <annotation n="@javax.xml.bind.annotation.XmlRootElement"/>
+        <jpa:attributes>
+            <basic attribute-type="java.util.Date" visibile="true" name="fechaDiagnostico" id="_155317710286136">
+                <jpa:column name="fechaDiagnostico" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:temporal>TIMESTAMP</jpa:temporal>
+            </basic>
+            <basic attribute-type="Integer" visibile="true" name="idmedico" id="_155317710286137">
+                <jpa:column name="idmedico" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <many-to-one primaryKey="false" connected-entity-id="_155317710294868" connected-attribute-id="_155317710294982" visibile="true" name="idPaciente" id="_155317710286138">
+                <join-column name="idPaciente" referenced-column="_155317710294869" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </many-to-one>
+            <many-to-one primaryKey="false" connected-entity-id="_155317710277015" connected-attribute-id="_155317710277019" visibile="true" name="idTipoDiagnostico" id="_155317710286139">
+                <join-column name="idTipoDiagnostico" referenced-column="_155317710277016" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </many-to-one>
+            <many-to-one primaryKey="false" connected-entity-id="_1553177103017120" connected-attribute-id="_1553177103017127" visibile="true" name="idusuario" id="_155317710286140">
+                <join-column name="idusuario" referenced-column="_1553177103017121" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </many-to-one>
+            <jpa:id attribute-type="Integer" visibile="true" name="idDiagnostico" id="_155317710286135">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <jpa:column name="idDiagnostico" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:generated-value strategy="IDENTITY"/>
+                <jpa:sequence-generator name="idDiagnostico"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq name="TblDiagnotiscos.findAll">
+            <jpa:query>SELECT t FROM TblDiagnotiscos t</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="TblDiagnotiscos.findByIdDiagnostico">
+            <jpa:query>SELECT t FROM TblDiagnotiscos t WHERE t.idDiagnostico = :idDiagnostico</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="TblDiagnotiscos.findByFechaDiagnostico">
+            <jpa:query>SELECT t FROM TblDiagnotiscos t WHERE t.fechaDiagnostico = :fechaDiagnostico</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="TblDiagnotiscos.findByIdmedico">
+            <jpa:query>SELECT t FROM TblDiagnotiscos t WHERE t.idmedico = :idmedico</jpa:query>
+        </jpa:nq>
+        <jpa:table name="tblDiagnotiscos"/>
+    </jpa:entity>
+    <jpa:entity xre="false" sm="false" abs="false" class="TblAcciones" visibile="true" minimized="false" rootElement="_15531771026421" id="_155317710288241">
+        <annotation n="@javax.xml.bind.annotation.XmlRootElement"/>
+        <jpa:attributes>
+            <basic attribute-type="String" visibile="true" name="accion" id="_155317710288243">
+                <an n="@javax.validation.constraints.Size(max=450)"/>
+                <jpa:column name="Accion" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <basic attribute-type="Integer" visibile="true" name="tipo" id="_155317710288244">
+                <jpa:column name="tipo" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <one-to-many own="false" collection-type="java.util.Collection" connected-entity-id="_155317710280020" connected-attribute-id="_155317710280128" visibile="true" name="tblCitasCollection" id="_155317710288245"/>
+            <jpa:id attribute-type="Integer" visibile="true" name="idAccion" id="_155317710288242">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <jpa:column name="idAccion" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:generated-value strategy="IDENTITY"/>
+                <jpa:sequence-generator name="idAccion"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq name="TblAcciones.findAll">
+            <jpa:query>SELECT t FROM TblAcciones t</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="TblAcciones.findByIdAccion">
+            <jpa:query>SELECT t FROM TblAcciones t WHERE t.idAccion = :idAccion</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="TblAcciones.findByAccion">
+            <jpa:query>SELECT t FROM TblAcciones t WHERE t.accion = :accion</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="TblAcciones.findByTipo">
+            <jpa:query>SELECT t FROM TblAcciones t WHERE t.tipo = :tipo</jpa:query>
+        </jpa:nq>
+        <jpa:table name="tblAcciones"/>
+    </jpa:entity>
+    <jpa:entity xre="false" compositePrimaryKeyType="IDCLASS" compositePrimaryKeyClass="VwPacientePK" sm="false" abs="false" class="VwPaciente" visibile="true" minimized="false" rootElement="_15531771026421" id="_155317710290746">
+        <annotation n="@javax.xml.bind.annotation.XmlRootElement"/>
+        <jpa:attributes>
+            <basic attribute-type="String" visibile="true" name="cedula" id="_155317710290747">
+                <an n="@javax.validation.constraints.Size(max=10)"/>
+                <jpa:column name="cedula" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <basic optional="false" attribute-type="java.util.Date" visibile="true" name="fechaNace" id="_155317710290748">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <jpa:column name="FechaNace" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:temporal>TIMESTAMP</jpa:temporal>
+            </basic>
+            <basic optional="false" attribute-type="String" visibile="true" name="nombreRepresentante" id="_155317710290749">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <an n="@javax.validation.constraints.Size(min=1, max=100)"/>
+                <jpa:column name="NombreRepresentante" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <basic optional="false" attribute-type="String" visibile="true" name="sexo" id="_155317710290750">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <an n="@javax.validation.constraints.Size(min=1, max=1)"/>
+                <jpa:column name="sexo" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <basic attribute-type="Integer" visibile="true" name="edad" id="_155317710290751">
+                <jpa:column name="edad" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <basic optional="false" attribute-type="String" visibile="true" name="paciente" id="_155317710290752">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <an n="@javax.validation.constraints.Size(min=1, max=201)"/>
+                <jpa:column name="Paciente" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <basic attribute-type="String" visibile="true" name="diagnostico" id="_155317710290754">
+                <an n="@javax.validation.constraints.Size(max=400)"/>
+                <jpa:column name="Diagnostico" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <basic attribute-type="java.util.Date" visibile="true" name="fecha" id="_155317710290755">
+                <jpa:column name="fecha" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:temporal>DATE</jpa:temporal>
+            </basic>
+            <basic attribute-type="String" visibile="true" name="accion" id="_155317710290756">
+                <an n="@javax.validation.constraints.Size(max=450)"/>
+                <jpa:column name="Accion" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <jpa:id attribute-type="String" visibile="true" name="codigo" id="_155317710290753">
+                <an n="@javax.validation.constraints.Size(max=10)"/>
+                <jpa:column name="Codigo" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:sequence-generator name="Codigo"/>
+            </jpa:id>
+            <jpa:id attribute-type="int" visibile="true" name="idPaciente" id="_155317710290757">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <jpa:column name="idPaciente" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:sequence-generator name="idPaciente"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq name="VwPaciente.findAll">
+            <jpa:query>SELECT v FROM VwPaciente v</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="VwPaciente.findByCedula">
+            <jpa:query>SELECT v FROM VwPaciente v WHERE v.cedula = :cedula</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="VwPaciente.findByFechaNace">
+            <jpa:query>SELECT v FROM VwPaciente v WHERE v.fechaNace = :fechaNace</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="VwPaciente.findByNombreRepresentante">
+            <jpa:query>SELECT v FROM VwPaciente v WHERE v.nombreRepresentante = :nombreRepresentante</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="VwPaciente.findBySexo">
+            <jpa:query>SELECT v FROM VwPaciente v WHERE v.sexo = :sexo</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="VwPaciente.findByEdad">
+            <jpa:query>SELECT v FROM VwPaciente v WHERE v.edad = :edad</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="VwPaciente.findByPaciente">
+            <jpa:query>SELECT v FROM VwPaciente v WHERE v.paciente = :paciente</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="VwPaciente.findByCodigo">
+            <jpa:query>SELECT v FROM VwPaciente v WHERE v.codigo = :codigo</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="VwPaciente.findByDiagnostico">
+            <jpa:query>SELECT v FROM VwPaciente v WHERE v.diagnostico = :diagnostico</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="VwPaciente.findByFecha">
+            <jpa:query>SELECT v FROM VwPaciente v WHERE v.fecha = :fecha</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="VwPaciente.findByAccion">
+            <jpa:query>SELECT v FROM VwPaciente v WHERE v.accion = :accion</jpa:query>
+        </jpa:nq>
+        <jpa:table name="vwPaciente"/>
+    </jpa:entity>
+    <jpa:entity xre="false" sm="false" abs="false" class="VwCitas" visibile="true" minimized="false" rootElement="_15531771026421" id="_155317710292758">
+        <annotation n="@javax.xml.bind.annotation.XmlRootElement"/>
+        <jpa:attributes>
+            <basic attribute-type="java.util.Date" visibile="true" name="fecha" id="_155317710292759">
+                <jpa:column name="fecha" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:temporal>DATE</jpa:temporal>
+            </basic>
+            <basic attribute-type="String" visibile="true" name="accion" id="_155317710292760">
+                <an n="@javax.validation.constraints.Size(max=450)"/>
+                <jpa:column name="Accion" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <basic optional="false" attribute-type="int" visibile="true" name="idPaciente" id="_155317710292862">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <jpa:column name="idPaciente" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <basic attribute-type="String" visibile="true" name="cedula" id="_155317710292863">
+                <an n="@javax.validation.constraints.Size(max=10)"/>
+                <jpa:column name="cedula" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <basic optional="false" attribute-type="String" visibile="true" name="paciente" id="_155317710292864">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <an n="@javax.validation.constraints.Size(min=1, max=201)"/>
+                <jpa:column name="Paciente" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <basic optional="false" attribute-type="String" visibile="true" name="sexo" id="_155317710292865">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <an n="@javax.validation.constraints.Size(min=1, max=1)"/>
+                <jpa:column name="sexo" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <basic optional="false" attribute-type="java.util.Date" visibile="true" name="fechaNace" id="_155317710292866">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <jpa:column name="FechaNace" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:temporal>TIMESTAMP</jpa:temporal>
+            </basic>
+            <basic attribute-type="Integer" visibile="true" name="edad" id="_155317710292867">
+                <jpa:column name="edad" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <jpa:id attribute-type="int" visibile="true" name="idCita" id="_155317710292761">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <jpa:column name="idCita" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:sequence-generator name="idCita"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq name="VwCitas.findAll">
+            <jpa:query>SELECT v FROM VwCitas v</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="VwCitas.findByFecha">
+            <jpa:query>SELECT v FROM VwCitas v WHERE v.fecha = :fecha</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="VwCitas.findByAccion">
+            <jpa:query>SELECT v FROM VwCitas v WHERE v.accion = :accion</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="VwCitas.findByIdCita">
+            <jpa:query>SELECT v FROM VwCitas v WHERE v.idCita = :idCita</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="VwCitas.findByIdPaciente">
+            <jpa:query>SELECT v FROM VwCitas v WHERE v.idPaciente = :idPaciente</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="VwCitas.findByCedula">
+            <jpa:query>SELECT v FROM VwCitas v WHERE v.cedula = :cedula</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="VwCitas.findByPaciente">
+            <jpa:query>SELECT v FROM VwCitas v WHERE v.paciente = :paciente</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="VwCitas.findBySexo">
+            <jpa:query>SELECT v FROM VwCitas v WHERE v.sexo = :sexo</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="VwCitas.findByFechaNace">
+            <jpa:query>SELECT v FROM VwCitas v WHERE v.fechaNace = :fechaNace</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="VwCitas.findByEdad">
+            <jpa:query>SELECT v FROM VwCitas v WHERE v.edad = :edad</jpa:query>
+        </jpa:nq>
+        <jpa:table name="vwCitas"/>
+    </jpa:entity>
+    <jpa:entity xre="false" sm="false" abs="false" class="TblPacientes" visibile="true" minimized="false" rootElement="_15531771026421" id="_155317710294868">
+        <annotation n="@javax.xml.bind.annotation.XmlRootElement"/>
+        <jpa:attributes>
+            <basic attribute-type="String" visibile="true" name="cedula" id="_155317710294870">
+                <an n="@javax.validation.constraints.Size(max=10)"/>
+                <jpa:column name="cedula" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <basic optional="false" attribute-type="String" visibile="true" name="apellido" id="_155317710294871">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <an n="@javax.validation.constraints.Size(min=1, max=100)"/>
+                <jpa:column name="Apellido" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <basic optional="false" attribute-type="String" visibile="true" name="nombre" id="_155317710294872">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <an n="@javax.validation.constraints.Size(min=1, max=100)"/>
+                <jpa:column name="Nombre" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <basic optional="false" attribute-type="java.util.Date" visibile="true" name="fechaNace" id="_155317710294873">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <jpa:column name="FechaNace" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:temporal>TIMESTAMP</jpa:temporal>
+            </basic>
+            <basic attribute-type="String" visibile="true" name="cedRepresentante" id="_155317710294874">
+                <an n="@javax.validation.constraints.Size(max=10)"/>
+                <jpa:column name="cedRepresentante" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <basic optional="false" attribute-type="String" visibile="true" name="nombreRepresentante" id="_155317710294875">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <an n="@javax.validation.constraints.Size(min=1, max=100)"/>
+                <jpa:column name="NombreRepresentante" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <basic optional="false" attribute-type="String" visibile="true" name="nombrePadre" id="_155317710294876">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <an n="@javax.validation.constraints.Size(min=1, max=100)"/>
+                <jpa:column name="NombrePadre" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <basic optional="false" attribute-type="String" visibile="true" name="nombreMadre" id="_155317710294877">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <an n="@javax.validation.constraints.Size(min=1, max=100)"/>
+                <jpa:column name="NombreMadre" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <basic optional="false" attribute-type="String" visibile="true" name="sexo" id="_155317710294978">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <an n="@javax.validation.constraints.Size(min=1, max=1)"/>
+                <jpa:column name="sexo" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <basic optional="false" attribute-type="String" visibile="true" name="direccion" id="_155317710294979">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <an n="@javax.validation.constraints.Size(min=1, max=250)"/>
+                <jpa:column name="Direccion" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <basic attribute-type="String" visibile="true" name="telefono" id="_155317710294980">
+                <an n="@javax.validation.constraints.Size(max=50)"/>
+                <jpa:column name="Telefono" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <basic attribute-type="java.util.Date" visibile="true" name="fechaReg" id="_155317710294981">
+                <jpa:column name="fechaReg" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:temporal>TIMESTAMP</jpa:temporal>
+            </basic>
+            <many-to-one primaryKey="false" connected-entity-id="_155317710274211" connected-attribute-id="_155317710274214" visibile="true" name="idArea" id="_155317710295383">
+                <join-column name="idArea" referenced-column="_155317710274212" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </many-to-one>
+            <many-to-one primaryKey="false" connected-entity-id="_1553177103064142" connected-attribute-id="_1553177103064145" visibile="true" name="idCanton" id="_155317710295384">
+                <join-column name="idCanton" referenced-column="_1553177103064143" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </many-to-one>
+            <many-to-one primaryKey="false" connected-entity-id="_15531771026752" connected-attribute-id="_15531771026775" visibile="true" name="idOrigen" id="_155317710295485">
+                <join-column name="idOrigen" referenced-column="_15531771026763" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </many-to-one>
+            <many-to-one primaryKey="false" connected-entity-id="_15531771027066" connected-attribute-id="_155317710270710" visibile="true" name="idzona" id="_155317710295486">
+                <join-column name="idzona" referenced-column="_15531771027077" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </many-to-one>
+            <one-to-many own="false" collection-type="java.util.Collection" connected-entity-id="_155317710286134" connected-attribute-id="_155317710286138" visibile="true" name="tblDiagnotiscosCollection" id="_155317710294982"/>
+            <one-to-many own="false" collection-type="java.util.Collection" connected-entity-id="_1553177103090146" connected-attribute-id="_1553177103090152" visibile="true" name="tblMatriculasCollection" id="_155317710295487">
+                <cascade>
+                    <jpa:cascade-all/>
+                </cascade>
+            </one-to-many>
+            <one-to-many own="false" collection-type="java.util.Collection" connected-entity-id="_155317710280020" connected-attribute-id="_155317710280129" visibile="true" name="tblCitasCollection" id="_155317710295488"/>
+            <jpa:id attribute-type="Integer" visibile="true" name="idPaciente" id="_155317710294869">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <jpa:column name="idPaciente" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:generated-value strategy="IDENTITY"/>
+                <jpa:sequence-generator name="idPaciente"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq name="TblPacientes.findAll">
+            <jpa:query>SELECT t FROM TblPacientes t</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="TblPacientes.findByIdPaciente">
+            <jpa:query>SELECT t FROM TblPacientes t WHERE t.idPaciente = :idPaciente</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="TblPacientes.findByCedula">
+            <jpa:query>SELECT t FROM TblPacientes t WHERE t.cedula = :cedula</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="TblPacientes.findByApellido">
+            <jpa:query>SELECT t FROM TblPacientes t WHERE t.apellido = :apellido</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="TblPacientes.findByNombre">
+            <jpa:query>SELECT t FROM TblPacientes t WHERE t.nombre = :nombre</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="TblPacientes.findByFechaNace">
+            <jpa:query>SELECT t FROM TblPacientes t WHERE t.fechaNace = :fechaNace</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="TblPacientes.findByCedRepresentante">
+            <jpa:query>SELECT t FROM TblPacientes t WHERE t.cedRepresentante = :cedRepresentante</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="TblPacientes.findByNombreRepresentante">
+            <jpa:query>SELECT t FROM TblPacientes t WHERE t.nombreRepresentante = :nombreRepresentante</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="TblPacientes.findByNombrePadre">
+            <jpa:query>SELECT t FROM TblPacientes t WHERE t.nombrePadre = :nombrePadre</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="TblPacientes.findByNombreMadre">
+            <jpa:query>SELECT t FROM TblPacientes t WHERE t.nombreMadre = :nombreMadre</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="TblPacientes.findBySexo">
+            <jpa:query>SELECT t FROM TblPacientes t WHERE t.sexo = :sexo</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="TblPacientes.findByDireccion">
+            <jpa:query>SELECT t FROM TblPacientes t WHERE t.direccion = :direccion</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="TblPacientes.findByTelefono">
+            <jpa:query>SELECT t FROM TblPacientes t WHERE t.telefono = :telefono</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="TblPacientes.findByFechaReg">
+            <jpa:query>SELECT t FROM TblPacientes t WHERE t.fechaReg = :fechaReg</jpa:query>
+        </jpa:nq>
+        <jpa:table name="tblPacientes"/>
+    </jpa:entity>
+    <jpa:entity xre="false" sm="false" abs="false" class="VwListaPacientes" visibile="true" minimized="false" rootElement="_15531771026421" id="_155317710297589">
+        <annotation n="@javax.xml.bind.annotation.XmlRootElement"/>
+        <jpa:attributes>
+            <basic attribute-type="String" visibile="true" name="cedula" id="_155317710297591">
+                <an n="@javax.validation.constraints.Size(max=10)"/>
+                <jpa:column name="cedula" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <basic optional="false" attribute-type="String" visibile="true" name="apellido" id="_155317710297592">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <an n="@javax.validation.constraints.Size(min=1, max=100)"/>
+                <jpa:column name="Apellido" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <basic optional="false" attribute-type="String" visibile="true" name="nombre" id="_155317710297593">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <an n="@javax.validation.constraints.Size(min=1, max=100)"/>
+                <jpa:column name="Nombre" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <basic optional="false" attribute-type="java.util.Date" visibile="true" name="fechaNace" id="_155317710297594">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <jpa:column name="FechaNace" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:temporal>TIMESTAMP</jpa:temporal>
+            </basic>
+            <basic attribute-type="String" visibile="true" name="cedRepresentante" id="_155317710297595">
+                <an n="@javax.validation.constraints.Size(max=10)"/>
+                <jpa:column name="cedRepresentante" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <basic optional="false" attribute-type="String" visibile="true" name="nombreRepresentante" id="_155317710297596">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <an n="@javax.validation.constraints.Size(min=1, max=100)"/>
+                <jpa:column name="NombreRepresentante" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <basic optional="false" attribute-type="String" visibile="true" name="nombrePadre" id="_155317710297597">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <an n="@javax.validation.constraints.Size(min=1, max=100)"/>
+                <jpa:column name="NombrePadre" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <basic optional="false" attribute-type="String" visibile="true" name="nombreMadre" id="_155317710297598">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <an n="@javax.validation.constraints.Size(min=1, max=100)"/>
+                <jpa:column name="NombreMadre" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <basic optional="false" attribute-type="String" visibile="true" name="sexo" id="_155317710297599">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <an n="@javax.validation.constraints.Size(min=1, max=1)"/>
+                <jpa:column name="sexo" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <basic optional="false" attribute-type="String" visibile="true" name="direccion" id="_1553177102975100">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <an n="@javax.validation.constraints.Size(min=1, max=250)"/>
+                <jpa:column name="Direccion" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <basic attribute-type="String" visibile="true" name="telefono" id="_1553177102975101">
+                <an n="@javax.validation.constraints.Size(max=50)"/>
+                <jpa:column name="Telefono" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <basic attribute-type="String" visibile="true" name="origen" id="_1553177102975102">
+                <an n="@javax.validation.constraints.Size(max=150)"/>
+                <jpa:column name="Origen" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <basic optional="false" attribute-type="String" visibile="true" name="canton" id="_1553177102975103">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <an n="@javax.validation.constraints.Size(min=1, max=50)"/>
+                <jpa:column name="canton" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <basic attribute-type="String" visibile="true" name="area" id="_1553177102975104">
+                <an n="@javax.validation.constraints.Size(max=350)"/>
+                <jpa:column name="Area" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <basic attribute-type="String" visibile="true" name="zona" id="_1553177102975105">
+                <an n="@javax.validation.constraints.Size(max=150)"/>
+                <jpa:column name="Zona" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <basic attribute-type="Integer" visibile="true" name="edad" id="_1553177102975106">
+                <jpa:column name="edad" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <basic optional="false" attribute-type="String" visibile="true" name="paciente" id="_1553177102975107">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <an n="@javax.validation.constraints.Size(min=1, max=201)"/>
+                <jpa:column name="Paciente" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <jpa:id attribute-type="int" visibile="true" name="idPaciente" id="_155317710297590">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <jpa:column name="idPaciente" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:sequence-generator name="idPaciente"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq name="VwListaPacientes.findAll">
+            <jpa:query>SELECT v FROM VwListaPacientes v</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="VwListaPacientes.findByIdPaciente">
+            <jpa:query>SELECT v FROM VwListaPacientes v WHERE v.idPaciente = :idPaciente</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="VwListaPacientes.findByCedula">
+            <jpa:query>SELECT v FROM VwListaPacientes v WHERE v.cedula = :cedula</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="VwListaPacientes.findByApellido">
+            <jpa:query>SELECT v FROM VwListaPacientes v WHERE v.apellido = :apellido</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="VwListaPacientes.findByNombre">
+            <jpa:query>SELECT v FROM VwListaPacientes v WHERE v.nombre = :nombre</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="VwListaPacientes.findByFechaNace">
+            <jpa:query>SELECT v FROM VwListaPacientes v WHERE v.fechaNace = :fechaNace</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="VwListaPacientes.findByCedRepresentante">
+            <jpa:query>SELECT v FROM VwListaPacientes v WHERE v.cedRepresentante = :cedRepresentante</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="VwListaPacientes.findByNombreRepresentante">
+            <jpa:query>SELECT v FROM VwListaPacientes v WHERE v.nombreRepresentante = :nombreRepresentante</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="VwListaPacientes.findByNombrePadre">
+            <jpa:query>SELECT v FROM VwListaPacientes v WHERE v.nombrePadre = :nombrePadre</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="VwListaPacientes.findByNombreMadre">
+            <jpa:query>SELECT v FROM VwListaPacientes v WHERE v.nombreMadre = :nombreMadre</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="VwListaPacientes.findBySexo">
+            <jpa:query>SELECT v FROM VwListaPacientes v WHERE v.sexo = :sexo</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="VwListaPacientes.findByDireccion">
+            <jpa:query>SELECT v FROM VwListaPacientes v WHERE v.direccion = :direccion</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="VwListaPacientes.findByTelefono">
+            <jpa:query>SELECT v FROM VwListaPacientes v WHERE v.telefono = :telefono</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="VwListaPacientes.findByOrigen">
+            <jpa:query>SELECT v FROM VwListaPacientes v WHERE v.origen = :origen</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="VwListaPacientes.findByCanton">
+            <jpa:query>SELECT v FROM VwListaPacientes v WHERE v.canton = :canton</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="VwListaPacientes.findByArea">
+            <jpa:query>SELECT v FROM VwListaPacientes v WHERE v.area = :area</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="VwListaPacientes.findByZona">
+            <jpa:query>SELECT v FROM VwListaPacientes v WHERE v.zona = :zona</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="VwListaPacientes.findByEdad">
+            <jpa:query>SELECT v FROM VwListaPacientes v WHERE v.edad = :edad</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="VwListaPacientes.findByPaciente">
+            <jpa:query>SELECT v FROM VwListaPacientes v WHERE v.paciente = :paciente</jpa:query>
+        </jpa:nq>
+        <jpa:table name="vwListaPacientes"/>
+    </jpa:entity>
+    <jpa:entity xre="false" compositePrimaryKeyType="IDCLASS" compositePrimaryKeyClass="VwMatriculadosPK" sm="false" abs="false" class="VwMatriculados" visibile="true" minimized="false" rootElement="_15531771026421" id="_1553177102996108">
+        <annotation n="@javax.xml.bind.annotation.XmlRootElement"/>
+        <jpa:attributes>
+            <basic attribute-type="String" visibile="true" name="cedula" id="_1553177102996110">
+                <an n="@javax.validation.constraints.Size(max=10)"/>
+                <jpa:column name="cedula" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <basic optional="false" attribute-type="String" visibile="true" name="apellido" id="_1553177102996111">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <an n="@javax.validation.constraints.Size(min=1, max=100)"/>
+                <jpa:column name="Apellido" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <basic optional="false" attribute-type="String" visibile="true" name="nombre" id="_1553177102996112">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <an n="@javax.validation.constraints.Size(min=1, max=100)"/>
+                <jpa:column name="Nombre" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <basic optional="false" attribute-type="String" visibile="true" name="sexo" id="_1553177102996113">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <an n="@javax.validation.constraints.Size(min=1, max=1)"/>
+                <jpa:column name="sexo" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <basic attribute-type="String" visibile="true" name="area" id="_1553177102996114">
+                <an n="@javax.validation.constraints.Size(max=350)"/>
+                <jpa:column name="Area" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <basic attribute-type="Integer" visibile="true" name="edad" id="_1553177102996115">
+                <jpa:column name="edad" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <basic optional="false" attribute-type="int" visibile="true" name="anio" id="_1553177102996116">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <jpa:column name="anio" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <basic optional="false" attribute-type="String" visibile="true" name="direccion" id="_1553177102996118">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <an n="@javax.validation.constraints.Size(min=1, max=250)"/>
+                <jpa:column name="Direccion" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <basic attribute-type="String" visibile="true" name="telefono" id="_1553177102996119">
+                <an n="@javax.validation.constraints.Size(max=50)"/>
+                <jpa:column name="Telefono" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <jpa:id attribute-type="int" visibile="true" name="idPaciente" id="_1553177102996109">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <jpa:column name="idPaciente" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:sequence-generator name="idPaciente"/>
+            </jpa:id>
+            <jpa:id attribute-type="String" visibile="true" name="numMat" id="_1553177102996117">
+                <an n="@javax.validation.constraints.Size(max=20)"/>
+                <jpa:column name="numMat" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:sequence-generator name="numMat"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq name="VwMatriculados.findAll">
+            <jpa:query>SELECT v FROM VwMatriculados v</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="VwMatriculados.findByIdPaciente">
+            <jpa:query>SELECT v FROM VwMatriculados v WHERE v.idPaciente = :idPaciente</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="VwMatriculados.findByCedula">
+            <jpa:query>SELECT v FROM VwMatriculados v WHERE v.cedula = :cedula</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="VwMatriculados.findByApellido">
+            <jpa:query>SELECT v FROM VwMatriculados v WHERE v.apellido = :apellido</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="VwMatriculados.findByNombre">
+            <jpa:query>SELECT v FROM VwMatriculados v WHERE v.nombre = :nombre</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="VwMatriculados.findBySexo">
+            <jpa:query>SELECT v FROM VwMatriculados v WHERE v.sexo = :sexo</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="VwMatriculados.findByArea">
+            <jpa:query>SELECT v FROM VwMatriculados v WHERE v.area = :area</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="VwMatriculados.findByEdad">
+            <jpa:query>SELECT v FROM VwMatriculados v WHERE v.edad = :edad</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="VwMatriculados.findByAnio">
+            <jpa:query>SELECT v FROM VwMatriculados v WHERE v.anio = :anio</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="VwMatriculados.findByNumMat">
+            <jpa:query>SELECT v FROM VwMatriculados v WHERE v.numMat = :numMat</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="VwMatriculados.findByDireccion">
+            <jpa:query>SELECT v FROM VwMatriculados v WHERE v.direccion = :direccion</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="VwMatriculados.findByTelefono">
+            <jpa:query>SELECT v FROM VwMatriculados v WHERE v.telefono = :telefono</jpa:query>
+        </jpa:nq>
+        <jpa:table name="vwMatriculados"/>
+    </jpa:entity>
+    <jpa:entity xre="false" sm="false" abs="false" class="TblUsuarios" visibile="true" minimized="false" rootElement="_15531771026421" id="_1553177103017120">
+        <annotation n="@javax.xml.bind.annotation.XmlRootElement"/>
+        <jpa:attributes>
+            <basic optional="false" attribute-type="String" visibile="true" name="usuario" id="_1553177103017122">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <an n="@javax.validation.constraints.Size(min=1, max=20)"/>
+                <jpa:column name="usuario" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <basic optional="false" attribute-type="String" visibile="true" name="nombre" id="_1553177103017123">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <an n="@javax.validation.constraints.Size(min=1, max=150)"/>
+                <jpa:column name="Nombre" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <basic optional="false" attribute-type="String" visibile="true" name="clave" id="_1553177103017124">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <an n="@javax.validation.constraints.Size(min=1, max=10)"/>
+                <jpa:column name="clave" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <basic attribute-type="String" visibile="true" name="cargo" id="_1553177103017125">
+                <an n="@javax.validation.constraints.Size(max=200)"/>
+                <jpa:column name="cargo" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <basic attribute-type="String" visibile="true" name="correo" id="_1553177103017126">
+                <an n="@javax.validation.constraints.Size(max=250)"/>
+                <jpa:column name="correo" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <one-to-many own="false" collection-type="java.util.Collection" connected-entity-id="_155317710286134" connected-attribute-id="_155317710286140" visibile="true" name="tblDiagnotiscosCollection" id="_1553177103017127"/>
+            <one-to-many own="false" collection-type="java.util.Collection" connected-entity-id="_1553177103090146" connected-attribute-id="_1553177103090153" visibile="true" name="tblMatriculasCollection" id="_1553177103021128">
+                <cascade>
+                    <jpa:cascade-all/>
+                </cascade>
+            </one-to-many>
+            <jpa:id attribute-type="Integer" visibile="true" name="idUsuario" id="_1553177103017121">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <jpa:column name="idUsuario" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:generated-value strategy="IDENTITY"/>
+                <jpa:sequence-generator name="idUsuario"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq name="TblUsuarios.findAll">
+            <jpa:query>SELECT t FROM TblUsuarios t</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="TblUsuarios.findByIdUsuario">
+            <jpa:query>SELECT t FROM TblUsuarios t WHERE t.idUsuario = :idUsuario</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="TblUsuarios.findByUsuario">
+            <jpa:query>SELECT t FROM TblUsuarios t WHERE t.usuario = :usuario</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="TblUsuarios.findByNombre">
+            <jpa:query>SELECT t FROM TblUsuarios t WHERE t.nombre = :nombre</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="TblUsuarios.findByClave">
+            <jpa:query>SELECT t FROM TblUsuarios t WHERE t.clave = :clave</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="TblUsuarios.findByCargo">
+            <jpa:query>SELECT t FROM TblUsuarios t WHERE t.cargo = :cargo</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="TblUsuarios.findByCorreo">
+            <jpa:query>SELECT t FROM TblUsuarios t WHERE t.correo = :correo</jpa:query>
+        </jpa:nq>
+        <jpa:table name="tblUsuarios"/>
+    </jpa:entity>
+    <jpa:entity xre="false" compositePrimaryKeyType="IDCLASS" compositePrimaryKeyClass="VwDiagnosticosPK" sm="false" abs="false" class="VwDiagnosticos" visibile="true" minimized="false" rootElement="_15531771026421" id="_1553177103042129">
+        <annotation n="@javax.xml.bind.annotation.XmlRootElement"/>
+        <jpa:attributes>
+            <basic attribute-type="String" visibile="true" name="codigo" id="_1553177103042130">
+                <an n="@javax.validation.constraints.Size(max=10)"/>
+                <jpa:column name="Codigo" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <basic attribute-type="String" visibile="true" name="diagnostico" id="_1553177103042131">
+                <an n="@javax.validation.constraints.Size(max=400)"/>
+                <jpa:column name="Diagnostico" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <basic attribute-type="String" visibile="true" name="cedula" id="_1553177103042134">
+                <an n="@javax.validation.constraints.Size(max=10)"/>
+                <jpa:column name="cedula" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <basic optional="false" attribute-type="String" visibile="true" name="apellido" id="_1553177103042135">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <an n="@javax.validation.constraints.Size(min=1, max=100)"/>
+                <jpa:column name="Apellido" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <basic optional="false" attribute-type="String" visibile="true" name="nombre" id="_1553177103042136">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <an n="@javax.validation.constraints.Size(min=1, max=100)"/>
+                <jpa:column name="Nombre" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <basic optional="false" attribute-type="java.util.Date" visibile="true" name="fechaNace" id="_1553177103042137">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <jpa:column name="FechaNace" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:temporal>TIMESTAMP</jpa:temporal>
+            </basic>
+            <basic optional="false" attribute-type="String" visibile="true" name="nombreRepresentante" id="_1553177103043138">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <an n="@javax.validation.constraints.Size(min=1, max=100)"/>
+                <jpa:column name="NombreRepresentante" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <basic attribute-type="Integer" visibile="true" name="edad" id="_1553177103043139">
+                <jpa:column name="edad" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <basic attribute-type="Integer" visibile="true" name="edadDiagnostico" id="_1553177103043140">
+                <jpa:column name="edadDiagnostico" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <basic attribute-type="java.util.Date" visibile="true" name="fechaDiagnostico" id="_1553177103043141">
+                <jpa:column name="fechaDiagnostico" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:temporal>TIMESTAMP</jpa:temporal>
+            </basic>
+            <jpa:id attribute-type="int" visibile="true" name="idTipoDiagnostico" id="_1553177103042132">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <jpa:column name="idTipoDiagnostico" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:sequence-generator name="idTipoDiagnostico"/>
+            </jpa:id>
+            <jpa:id attribute-type="Integer" visibile="true" name="idPaciente" id="_1553177103042133">
+                <jpa:column name="idPaciente" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:sequence-generator name="idPaciente"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq name="VwDiagnosticos.findAll">
+            <jpa:query>SELECT v FROM VwDiagnosticos v</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="VwDiagnosticos.findByCodigo">
+            <jpa:query>SELECT v FROM VwDiagnosticos v WHERE v.codigo = :codigo</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="VwDiagnosticos.findByDiagnostico">
+            <jpa:query>SELECT v FROM VwDiagnosticos v WHERE v.diagnostico = :diagnostico</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="VwDiagnosticos.findByIdTipoDiagnostico">
+            <jpa:query>SELECT v FROM VwDiagnosticos v WHERE v.idTipoDiagnostico = :idTipoDiagnostico</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="VwDiagnosticos.findByIdPaciente">
+            <jpa:query>SELECT v FROM VwDiagnosticos v WHERE v.idPaciente = :idPaciente</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="VwDiagnosticos.findByCedula">
+            <jpa:query>SELECT v FROM VwDiagnosticos v WHERE v.cedula = :cedula</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="VwDiagnosticos.findByApellido">
+            <jpa:query>SELECT v FROM VwDiagnosticos v WHERE v.apellido = :apellido</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="VwDiagnosticos.findByNombre">
+            <jpa:query>SELECT v FROM VwDiagnosticos v WHERE v.nombre = :nombre</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="VwDiagnosticos.findByFechaNace">
+            <jpa:query>SELECT v FROM VwDiagnosticos v WHERE v.fechaNace = :fechaNace</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="VwDiagnosticos.findByNombreRepresentante">
+            <jpa:query>SELECT v FROM VwDiagnosticos v WHERE v.nombreRepresentante = :nombreRepresentante</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="VwDiagnosticos.findByEdad">
+            <jpa:query>SELECT v FROM VwDiagnosticos v WHERE v.edad = :edad</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="VwDiagnosticos.findByEdadDiagnostico">
+            <jpa:query>SELECT v FROM VwDiagnosticos v WHERE v.edadDiagnostico = :edadDiagnostico</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="VwDiagnosticos.findByFechaDiagnostico">
+            <jpa:query>SELECT v FROM VwDiagnosticos v WHERE v.fechaDiagnostico = :fechaDiagnostico</jpa:query>
+        </jpa:nq>
+        <jpa:table name="vwDiagnosticos"/>
+    </jpa:entity>
+    <jpa:entity xre="false" sm="false" abs="false" class="TblCantones" visibile="true" minimized="false" rootElement="_15531771026421" id="_1553177103064142">
+        <annotation n="@javax.xml.bind.annotation.XmlRootElement"/>
+        <jpa:attributes>
+            <basic optional="false" attribute-type="String" visibile="true" name="canton" id="_1553177103064144">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <an n="@javax.validation.constraints.Size(min=1, max=50)"/>
+                <jpa:column name="canton" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <one-to-many own="false" collection-type="java.util.Collection" connected-entity-id="_155317710294868" connected-attribute-id="_155317710295384" visibile="true" name="tblPacientesCollection" id="_1553177103064145"/>
+            <jpa:id attribute-type="Integer" visibile="true" name="idcanton" id="_1553177103064143">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <jpa:column name="idcanton" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:generated-value strategy="IDENTITY"/>
+                <jpa:sequence-generator name="idcanton"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq name="TblCantones.findAll">
+            <jpa:query>SELECT t FROM TblCantones t</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="TblCantones.findByIdcanton">
+            <jpa:query>SELECT t FROM TblCantones t WHERE t.idcanton = :idcanton</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="TblCantones.findByCanton">
+            <jpa:query>SELECT t FROM TblCantones t WHERE t.canton = :canton</jpa:query>
+        </jpa:nq>
+        <jpa:table name="tblCantones"/>
+    </jpa:entity>
+    <jpa:entity xre="false" sm="false" abs="false" class="TblMatriculas" visibile="true" minimized="false" rootElement="_15531771026421" id="_1553177103090146">
+        <annotation n="@javax.xml.bind.annotation.XmlRootElement"/>
+        <jpa:attributes>
+            <basic optional="false" attribute-type="int" visibile="true" name="anio" id="_1553177103090148">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <jpa:column name="anio" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <basic optional="false" attribute-type="java.util.Date" visibile="true" name="fechaMat" id="_1553177103090149">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <jpa:column name="fechaMat" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:temporal>TIMESTAMP</jpa:temporal>
+            </basic>
+            <basic attribute-type="Integer" visibile="true" name="numero" id="_1553177103090150">
+                <jpa:column name="numero" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <basic attribute-type="String" visibile="true" name="numMat" id="_1553177103090151">
+                <an n="@javax.validation.constraints.Size(max=20)"/>
+                <jpa:column name="numMat" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </basic>
+            <many-to-one optional="false" primaryKey="false" connected-entity-id="_155317710294868" connected-attribute-id="_155317710295487" visibile="true" name="idPaciente" id="_1553177103090152">
+                <join-column name="idPaciente" referenced-column="_155317710294869" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </many-to-one>
+            <many-to-one optional="false" primaryKey="false" connected-entity-id="_1553177103017120" connected-attribute-id="_1553177103021128" visibile="true" name="idusuario" id="_1553177103090153">
+                <join-column name="idusuario" referenced-column="_1553177103017121" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </many-to-one>
+            <jpa:id attribute-type="Integer" visibile="true" name="idMatricula" id="_1553177103090147">
+                <an n="@javax.validation.constraints.NotNull"/>
+                <jpa:column name="idMatricula" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:generated-value strategy="IDENTITY"/>
+                <jpa:sequence-generator name="idMatricula"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq name="TblMatriculas.findAll">
+            <jpa:query>SELECT t FROM TblMatriculas t</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="TblMatriculas.findByIdMatricula">
+            <jpa:query>SELECT t FROM TblMatriculas t WHERE t.idMatricula = :idMatricula</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="TblMatriculas.findByAnio">
+            <jpa:query>SELECT t FROM TblMatriculas t WHERE t.anio = :anio</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="TblMatriculas.findByFechaMat">
+            <jpa:query>SELECT t FROM TblMatriculas t WHERE t.fechaMat = :fechaMat</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="TblMatriculas.findByNumero">
+            <jpa:query>SELECT t FROM TblMatriculas t WHERE t.numero = :numero</jpa:query>
+        </jpa:nq>
+        <jpa:nq name="TblMatriculas.findByNumMat">
+            <jpa:query>SELECT t FROM TblMatriculas t WHERE t.numMat = :numMat</jpa:query>
+        </jpa:nq>
+        <jpa:table name="tblMatriculas"/>
+    </jpa:entity>
+    <jpa:diagram>
+        <plane elementRef="_15531771026421">
+            <shape elementRef="_15531771026752">
+                <Bounds x="32.0" y="32.0" width="180.0" height="126.0"/>
+            </shape>
+            <shape elementRef="_15531771027066">
+                <Bounds x="538.0" y="769.0" width="180.0" height="147.0"/>
+            </shape>
+            <shape elementRef="_155317710274211">
+                <Bounds x="32.0" y="209.0" width="180.0" height="126.0"/>
+            </shape>
+            <shape elementRef="_155317710277015">
+                <Bounds x="447.0" y="1090.0" width="204.0" height="147.0"/>
+            </shape>
+            <shape elementRef="_155317710280020">
+                <Bounds x="806.0" y="583.0" width="142.0" height="252.0"/>
+            </shape>
+            <shape elementRef="_155317710284230">
+                <Bounds x="891.0" y="68.0" width="168.0" height="113.0"/>
+            </shape>
+            <shape elementRef="_155317710286134">
+                <Bounds x="135.0" y="851.0" width="187.0" height="189.0"/>
+            </shape>
+            <shape elementRef="_155317710288241">
+                <Bounds x="1059.0" y="1040.0" width="166.0" height="147.0"/>
+            </shape>
+            <shape elementRef="_155317710290746">
+                <Bounds x="1097.0" y="68.0" width="175.0" height="281.0"/>
+            </shape>
+            <shape elementRef="_155317710292758">
+                <Bounds x="1294.0" y="68.0" width="143.0" height="239.0"/>
+            </shape>
+            <shape elementRef="_155317710294868">
+                <Bounds x="340.0" y="209.0" width="198.0" height="483.0"/>
+            </shape>
+            <shape elementRef="_155317710297589">
+                <Bounds x="1461.0" y="68.0" width="199.0" height="428.0"/>
+            </shape>
+            <shape elementRef="_1553177102996108">
+                <Bounds x="1097.0" y="370.0" width="188.0" height="281.0"/>
+            </shape>
+            <shape elementRef="_1553177103017120">
+                <Bounds x="1059.0" y="661.0" width="198.0" height="231.0"/>
+            </shape>
+            <shape elementRef="_1553177103042129">
+                <Bounds x="1685.0" y="68.0" width="188.0" height="302.0"/>
+            </shape>
+            <shape elementRef="_1553177103064142">
+                <Bounds x="661.0" y="32.0" width="180.0" height="126.0"/>
+            </shape>
+            <shape elementRef="_1553177103090146">
+                <Bounds x="806.0" y="222.0" width="173.0" height="210.0"/>
+            </shape>
+        </plane>
+    </jpa:diagram>
+</jpa:entity-mappings>

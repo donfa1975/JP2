@@ -16,24 +16,25 @@
 
         <h:body>
             <div class="caja1"> 
-                <div >
-				  <p:graphicImage library="images" name="logo_Ing.png"/>
+                <div>
+					<p:graphicImage library="images" name="logo_lnf.png" style="width: 180px;height: 50px"/>
+					
                 </div>
                 <div id="centro">
                     <h:form>
                         <p:fieldset legend="Login" >
                             <p:panelGrid columns="2">
 								<h:outputText value="Usuario:"/>
-								<h:inputText value="#{marsBean.usuario}" />
+								<h:inputText value="#{jp2bean.usuario}" />
 								<h:outputText value="Contraseña"/>
-								<h:inputSecret value="#{marsBean.pwd}"/>
+								<h:inputSecret value="#{jp2bean.pwd}"/>
                             </p:panelGrid>
                         </p:fieldset>
 						<br/>
-						<h:commandButton value="Continuar" action="#{marsBean.validar()}" style="margin-left: 50px;"/>
+						<h:commandButton value="Continuar" action="#{jp2bean.login()}" style="margin-left: 50px;"/>
 					    <br/>
 						<br/>
-						<h:outputText id="mensaje" value="#{marsBean.cifrado}" class="claseError"/>
+						<!--<h:outputText id="mensaje" value="#{marsBean.cifrado}" class="claseError"/>-->
                     </h:form>
 					<br/>
 					<br/>

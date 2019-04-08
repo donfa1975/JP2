@@ -5,7 +5,6 @@ import modelo.TblDiagnotiscos;
 import modelo.TblMatriculas;
 import java.util.Collection;
 import facade.TblUsuariosFacade;
-import controller.util.MobilePageController;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import javax.faces.context.FacesContext;
@@ -14,9 +13,6 @@ import javax.inject.Inject;
 @Named(value = "tblUsuariosController")
 @ViewScoped
 public class TblUsuariosController extends AbstractController<TblUsuarios> {
-
-	@Inject
-	private MobilePageController mobilePageController;
 
 	// Flags to indicate if child collections are empty
 	private boolean isTblDiagnotiscosCollectionEmpty;
@@ -62,7 +58,7 @@ public class TblUsuariosController extends AbstractController<TblUsuarios> {
 			Collection<TblDiagnotiscos> selectedTblDiagnotiscosCollection = ejbFacade.findTblDiagnotiscosCollection(selected);
 			FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("TblDiagnotiscos_items", selectedTblDiagnotiscosCollection);
 		}
-		return this.mobilePageController.getMobilePagesPrefix() + "/app/tblDiagnotiscos/index";
+		return "/app/tblDiagnotiscos/index";
 	}
 
 	public boolean getIsTblMatriculasCollectionEmpty() {
@@ -91,7 +87,7 @@ public class TblUsuariosController extends AbstractController<TblUsuarios> {
 			Collection<TblMatriculas> selectedTblMatriculasCollection = ejbFacade.findTblMatriculasCollection(selected);
 			FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("TblMatriculas_items", selectedTblMatriculasCollection);
 		}
-		return this.mobilePageController.getMobilePagesPrefix() + "/app/tblMatriculas/index";
+		return "/app/tblMatriculas/index";
 	}
 
 }

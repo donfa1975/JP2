@@ -8,13 +8,33 @@
 
     <ui:composition>
         <h:form id="menuForm">
-            <p:menubar>
+          <!--  <p:menubar>
                 <p:menuitem value="#{myBundle.Home}" outcome="/index" icon="ui-icon-home"/>
                 <p:submenu label="#{myBundle.Maintenance}">
+                    <p:menuitem value="#{myBundle.TblAccionesHeading}..." outcome="/app/tblAcciones/index" />
+                    <p:menuitem value="#{myBundle.TblAreasHeading}..." outcome="/app/tblAreas/index" />
+                    <p:menuitem value="#{myBundle.TblCantonesHeading}..." outcome="/app/tblCantones/index" />
+                    <p:menuitem value="#{myBundle.TblCitasHeading}..." outcome="/app/tblCitas/index" />
+                    <p:menuitem value="#{myBundle.TblDiagnotiscosHeading}..." outcome="/app/tblDiagnotiscos/index" />
+                    <p:menuitem value="#{myBundle.TblMatriculasHeading}..." outcome="/app/tblMatriculas/index" />
+                    <p:menuitem value="#{myBundle.TblOrigenesHeading}..." outcome="/app/tblOrigenes/index" />
+                    <p:menuitem value="#{myBundle.TblPacientesHeading}..." outcome="/app/tblPacientes/index" />
+                    <p:menuitem value="#{myBundle.TblTipoDiagnosticoHeading}..." outcome="/app/tblTipoDiagnostico/index" />
                     <p:menuitem value="#{myBundle.TblUsuariosHeading}..." outcome="/app/tblUsuarios/index" />
+                    <p:menuitem value="#{myBundle.TblZonasHeading}..." outcome="/app/tblZonas/index" />
                 </p:submenu>
-                <p:menuitem value="#{myBundle.Mobile}" outcome="/mobile/index" icon="ui-icon-signal"/>
-            </p:menubar>
+            </p:menubar>-->
+		  <p:dock position="top">
+			  
+				<p:menuitem value="Inicio" icon="/resources/images/home.png" url="../../index.xhtml"/> 
+				<p:menuitem value="Usuarios" icon="/resources/images/486.png" outcome="/app/tblUsuarios/index"/>
+				 <p:menuitem value="Pacientes" icon="/resources/images/pacientes.png" outcome="/app/tblPacientes/index" />
+				 <p:menuitem value="Matriculas" icon="/resources/images/matricula.png" url="#"/>
+				 <p:menuitem value="Citas" icon="/resources/images/citas.png" url="#"/>
+				 <p:menuitem value="Diagnosticos" icon="/resources/images/diagnostico.png" url="#"/>
+				 <p:menuitem value="Parametros" icon="/resources/images/parametros.png" url="#"/>
+				 <p:menuitem value="Reportes" icon="/resources/images/Reports.png" url="#"/>
+			</p:dock>
         </h:form>
     </ui:composition>
 

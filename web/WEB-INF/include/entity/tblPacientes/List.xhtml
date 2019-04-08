@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+	<h:form id="TblPacientesListForm">
+
+		<p:panel header="#{myBundle.ListTblPacientesTitle}">
+			<p:contextMenu id="TblPacientesDataTableContextMenu" for="datalist">  
+				<p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('TblPacientesListForm:createButton').click();" icon="ui-icon-plus"/>
+				<p:menuitem value="#{myBundle.View}" onclick="document.getElementById('TblPacientesListForm:viewButton').click();" icon="ui-icon-search"/>
+				<p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('TblPacientesListForm:editButton').click();" icon="ui-icon-pencil"/>
+				<p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('TblPacientesListForm:deleteButton').click();" icon="ui-icon-trash"/>
+				<p:separator/>
+				<p:menuitem value="#{myBundle.TblPacientesMenuItem_tblDiagnotiscosCollection}" icon="ui-icon-search"  action="#{tblPacientesController.navigateTblDiagnotiscosCollection}" disabled="#{tblPacientesController.isTblDiagnotiscosCollectionEmpty}" ajax="false"/>  
+				<p:menuitem value="#{myBundle.TblPacientesMenuItem_idArea}" icon="ui-icon-search"  actionListener="#{tblPacientesController.prepareIdArea}" update=":TblAreasViewForm" oncomplete="PF('TblAreasViewDialog').show()" disabled="#{empty tblPacientesController.selected.idArea}"/>  
+				<p:menuitem value="#{myBundle.TblPacientesMenuItem_idCanton}" icon="ui-icon-search"  actionListener="#{tblPacientesController.prepareIdCanton}" update=":TblCantonesViewForm" oncomplete="PF('TblCantonesViewDialog').show()" disabled="#{empty tblPacientesController.selected.idCanton}"/>  
+				<p:menuitem value="#{myBundle.TblPacientesMenuItem_idOrigen}" icon="ui-icon-search"  actionListener="#{tblPacientesController.prepareIdOrigen}" update=":TblOrigenesViewForm" oncomplete="PF('TblOrigenesViewDialog').show()" disabled="#{empty tblPacientesController.selected.idOrigen}"/>  
+				<p:menuitem value="#{myBundle.TblPacientesMenuItem_idzona}" icon="ui-icon-search"  actionListener="#{tblPacientesController.prepareIdzona}" update=":TblZonasViewForm" oncomplete="PF('TblZonasViewDialog').show()" disabled="#{empty tblPacientesController.selected.idzona}"/>  
+				<p:menuitem value="#{myBundle.TblPacientesMenuItem_tblMatriculasCollection}" icon="ui-icon-search"  action="#{tblPacientesController.navigateTblMatriculasCollection}" disabled="#{tblPacientesController.isTblMatriculasCollectionEmpty}" ajax="false"/>  
+				<p:menuitem value="#{myBundle.TblPacientesMenuItem_tblCitasCollection}" icon="ui-icon-search"  action="#{tblPacientesController.navigateTblCitasCollection}" disabled="#{tblPacientesController.isTblCitasCollectionEmpty}" ajax="false"/>  
+			</p:contextMenu>
+			<p:dataTable id="datalist"
+						 value="#{tblPacientesController.items}"
+						 lazy="false"
+						 rowKey="#{item.idPaciente}"
+						 var="item"
+						 paginator="true"
+						 rows="10"
+						 rowsPerPageTemplate="10,20,30,40,50"
+						 selectionMode="single"
+						 selection="#{tblPacientesController.selected}"
+						 filteredValue="#{tblPacientesController.filteredItems}">
+				<!--
+						 To enable Lazy Loading, please copy/replace the following lines above,
+						 and be sure to replace the word HASH with the # symbol:
+				
+						 value="HASH{tblPacientesController.lazyItems}"
+						 lazy="true"
+						 rowKey="HASH{item.idPaciente}"  <<< Remove this line
+				-->
+
+
+				<p:ajax event="rowSelect"   update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:TblPacientesDataTableContextMenu" listener="#{tblPacientesController.resetParents}"/>
+				<p:ajax event="rowUnselect" update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:TblPacientesDataTableContextMenu" listener="#{tblPacientesController.resetParents}"/>
+				<p:ajax event="contextMenu" update="@form:createButton @form:viewButton @form:editButton @form:deleteButton" listener="#{tblPacientesController.resetParents}"/>
+				<p:ajax event="rowDblselect" onsuccess="document.getElementById('TblPacientesListForm:viewButton').click();"/>
+
+				<p:column sortBy="#{item.idPaciente}" filterBy="#{item.idPaciente}">
+					<f:facet name="header">
+						<h:outputText value="#{myBundle.ListTblPacientesTitle_idPaciente}"/>
+					</f:facet>
+					<h:outputText value="#{item.idPaciente}"/>
+				</p:column>
+
+
+				<p:column sortBy="#{item.cedula}" filterBy="#{item.cedula}">
+					<f:facet name="header">
+						<h:outputText value="#{myBundle.ListTblPacientesTitle_cedula}"/>
+					</f:facet>
+					<h:outputText value="#{item.cedula}"/>
+				</p:column>
+
+
+				<p:column sortBy="#{item.apellido}" filterBy="#{item.apellido}">
+					<f:facet name="header">
+						<h:outputText value="#{myBundle.ListTblPacientesTitle_apellido}"/>
+					</f:facet>
+					<h:outputText value="#{item.apellido}"/>
+				</p:column>
+
+
+				<p:column sortBy="#{item.nombre}" filterBy="#{item.nombre}">
+					<f:facet name="header">
+						<h:outputText value="#{myBundle.ListTblPacientesTitle_nombre}"/>
+					</f:facet>
+					<h:outputText value="#{item.nombre}"/>
+				</p:column>
+
+
+				<p:column sortBy="#{item.fechaNace}" filterBy="#{item.fechaNace}">
+					<f:facet name="header">
+						<h:outputText value="#{myBundle.ListTblPacientesTitle_fechaNace}"/>
+					</f:facet>
+					<h:outputText value="#{item.fechaNace}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>
+				</p:column>
+
+
+				<p:column sortBy="#{item.cedRepresentante}" filterBy="#{item.cedRepresentante}">
+					<f:facet name="header">
+						<h:outputText value="#{myBundle.ListTblPacientesTitle_cedRepresentante}"/>
+					</f:facet>
+					<h:outputText value="#{item.cedRepresentante}"/>
+				</p:column>
+
+				<ui:remove>
+                    <p:column sortBy="#{item.nombreRepresentante}" filterBy="#{item.nombreRepresentante}">
+                        <f:facet name="header">
+                            <h:outputText value="#{myBundle.ListTblPacientesTitle_nombreRepresentante}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.nombreRepresentante}"/>
+                    </p:column>
+				</ui:remove>
+				<ui:remove>
+                    <p:column sortBy="#{item.nombrePadre}" filterBy="#{item.nombrePadre}">
+                        <f:facet name="header">
+                            <h:outputText value="#{myBundle.ListTblPacientesTitle_nombrePadre}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.nombrePadre}"/>
+                    </p:column>
+				</ui:remove>
+				<ui:remove>
+                    <p:column sortBy="#{item.nombreMadre}" filterBy="#{item.nombreMadre}">
+                        <f:facet name="header">
+                            <h:outputText value="#{myBundle.ListTblPacientesTitle_nombreMadre}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.nombreMadre}"/>
+                    </p:column>
+				</ui:remove>
+				<ui:remove>
+                    <p:column sortBy="#{item.sexo}" filterBy="#{item.sexo}">
+                        <f:facet name="header">
+                            <h:outputText value="#{myBundle.ListTblPacientesTitle_sexo}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.sexo}"/>
+                    </p:column>
+				</ui:remove>
+				<ui:remove>
+                    <p:column sortBy="#{item.direccion}" filterBy="#{item.direccion}">
+                        <f:facet name="header">
+                            <h:outputText value="#{myBundle.ListTblPacientesTitle_direccion}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.direccion}"/>
+                    </p:column>
+				</ui:remove>
+				<ui:remove>
+                    <p:column sortBy="#{item.telefono}" filterBy="#{item.telefono}">
+                        <f:facet name="header">
+                            <h:outputText value="#{myBundle.ListTblPacientesTitle_telefono}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.telefono}"/>
+                    </p:column>
+				</ui:remove>
+				<ui:remove>
+                    <p:column sortBy="#{item.fechaReg}" filterBy="#{item.fechaReg}">
+                        <f:facet name="header">
+                            <h:outputText value="#{myBundle.ListTblPacientesTitle_fechaReg}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.fechaReg}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>
+                    </p:column>
+				</ui:remove>
+				<ui:remove>
+                    <p:column sortBy="#{item.idArea.idArea}" filterBy="#{item.idArea.idArea}">
+                        <f:facet name="header">
+                            <h:outputText value="#{myBundle.ListTblPacientesTitle_idArea}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.idArea.idArea}"/>
+                    </p:column>
+				</ui:remove>
+				<ui:remove>
+                    <p:column sortBy="#{item.idCanton.idcanton}" filterBy="#{item.idCanton.idcanton}">
+                        <f:facet name="header">
+                            <h:outputText value="#{myBundle.ListTblPacientesTitle_idCanton}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.idCanton.idcanton}"/>
+                    </p:column>
+				</ui:remove>
+				<ui:remove>
+                    <p:column sortBy="#{item.idOrigen.idorigen}" filterBy="#{item.idOrigen.idorigen}">
+                        <f:facet name="header">
+                            <h:outputText value="#{myBundle.ListTblPacientesTitle_idOrigen}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.idOrigen.idorigen}"/>
+                    </p:column>
+				</ui:remove>
+				<ui:remove>
+                    <p:column sortBy="#{item.idzona.idZona}" filterBy="#{item.idzona.idZona}">
+                        <f:facet name="header">
+                            <h:outputText value="#{myBundle.ListTblPacientesTitle_idzona}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.idzona.idZona}"/>
+                    </p:column>
+				</ui:remove>
+
+			</p:dataTable>
+
+			<p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{tblPacientesController.prepareCreate}" update=":TblPacientesCreateForm" oncomplete="PF('TblPacientesCreateDialog').show()"/>
+			<p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":TblPacientesViewForm" oncomplete="PF('TblPacientesViewDialog').show()" disabled="#{empty tblPacientesController.selected}"/>
+			<p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":TblPacientesEditForm" oncomplete="PF('TblPacientesEditDialog').show()" disabled="#{empty tblPacientesController.selected}"/>
+			<p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{tblPacientesController.delete}" update=":growl,datalist" disabled="#{empty tblPacientesController.selected}">
+				<p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+			</p:commandButton>
+
+		</p:panel>
+		<ui:include src="/WEB-INF/include/confirmation.xhtml"/>
+	</h:form>
+
+</ui:composition>

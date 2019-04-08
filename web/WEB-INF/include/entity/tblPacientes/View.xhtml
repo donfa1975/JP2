@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TblPacientesViewDlg" widgetVar="TblPacientesViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewTblPacientesTitle}" closeOnEscape="true">
+
+            <h:form id="TblPacientesViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{tblPacientesController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewTblPacientesLabel_idPaciente}"/>
+                        <h:outputText value="#{tblPacientesController.selected.idPaciente}" title="#{myBundle.ViewTblPacientesTitle_idPaciente}"/>
+
+                        <h:outputText value="#{myBundle.ViewTblPacientesLabel_cedula}"/>
+                        <h:outputText value="#{tblPacientesController.selected.cedula}" title="#{myBundle.ViewTblPacientesTitle_cedula}"/>
+
+                        <h:outputText value="#{myBundle.ViewTblPacientesLabel_apellido}"/>
+                        <h:outputText value="#{tblPacientesController.selected.apellido}" title="#{myBundle.ViewTblPacientesTitle_apellido}"/>
+
+                        <h:outputText value="#{myBundle.ViewTblPacientesLabel_nombre}"/>
+                        <h:outputText value="#{tblPacientesController.selected.nombre}" title="#{myBundle.ViewTblPacientesTitle_nombre}"/>
+
+                        <h:outputText value="#{myBundle.ViewTblPacientesLabel_fechaNace}"/>
+                        <h:outputText value="#{tblPacientesController.selected.fechaNace}" title="#{myBundle.ViewTblPacientesTitle_fechaNace}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>
+
+                        <h:outputText value="#{myBundle.ViewTblPacientesLabel_cedRepresentante}"/>
+                        <h:outputText value="#{tblPacientesController.selected.cedRepresentante}" title="#{myBundle.ViewTblPacientesTitle_cedRepresentante}"/>
+
+                        <h:outputText value="#{myBundle.ViewTblPacientesLabel_nombreRepresentante}"/>
+                        <h:outputText value="#{tblPacientesController.selected.nombreRepresentante}" title="#{myBundle.ViewTblPacientesTitle_nombreRepresentante}"/>
+
+                        <h:outputText value="#{myBundle.ViewTblPacientesLabel_nombrePadre}"/>
+                        <h:outputText value="#{tblPacientesController.selected.nombrePadre}" title="#{myBundle.ViewTblPacientesTitle_nombrePadre}"/>
+
+                        <h:outputText value="#{myBundle.ViewTblPacientesLabel_nombreMadre}"/>
+                        <h:outputText value="#{tblPacientesController.selected.nombreMadre}" title="#{myBundle.ViewTblPacientesTitle_nombreMadre}"/>
+
+                        <h:outputText value="#{myBundle.ViewTblPacientesLabel_sexo}"/>
+                        <h:outputText value="#{tblPacientesController.selected.sexo}" title="#{myBundle.ViewTblPacientesTitle_sexo}"/>
+
+                        <h:outputText value="#{myBundle.ViewTblPacientesLabel_direccion}"/>
+                        <h:outputText value="#{tblPacientesController.selected.direccion}" title="#{myBundle.ViewTblPacientesTitle_direccion}"/>
+
+                        <h:outputText value="#{myBundle.ViewTblPacientesLabel_telefono}"/>
+                        <h:outputText value="#{tblPacientesController.selected.telefono}" title="#{myBundle.ViewTblPacientesTitle_telefono}"/>
+
+                        <h:outputText value="#{myBundle.ViewTblPacientesLabel_fechaReg}"/>
+                        <h:outputText value="#{tblPacientesController.selected.fechaReg}" title="#{myBundle.ViewTblPacientesTitle_fechaReg}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>
+
+                        <h:outputText value="#{myBundle.ViewTblPacientesLabel_idArea}"/>
+                        <h:outputText value="#{tblPacientesController.selected.idArea.idArea}"/>
+
+                        <h:outputText value="#{myBundle.ViewTblPacientesLabel_idCanton}"/>
+                        <h:outputText value="#{tblPacientesController.selected.idCanton.idcanton}"/>
+
+                        <h:outputText value="#{myBundle.ViewTblPacientesLabel_idOrigen}"/>
+                        <h:outputText value="#{tblPacientesController.selected.idOrigen.idorigen}"/>
+
+                        <h:outputText value="#{myBundle.ViewTblPacientesLabel_idzona}"/>
+                        <h:outputText value="#{tblPacientesController.selected.idzona.idZona}"/>
+                    </p:panelGrid>
+					<p:commandButton value="#{myBundle.Close}" onclick="PF('TblPacientesViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

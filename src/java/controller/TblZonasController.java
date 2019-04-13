@@ -4,10 +4,17 @@ import modelo.TblZonas;
 import modelo.TblPacientes;
 import java.util.Collection;
 import facade.TblZonasFacade;
+import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 @Named(value = "tblZonasController")
 @ViewScoped
@@ -58,4 +65,6 @@ public class TblZonasController extends AbstractController<TblZonas> {
 		return "/app/tblPacientes/index";
 	}
 
+	
+		
 }

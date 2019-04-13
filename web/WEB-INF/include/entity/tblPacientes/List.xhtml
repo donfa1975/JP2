@@ -49,14 +49,6 @@
 				<p:ajax event="contextMenu" update="@form:createButton @form:viewButton @form:editButton @form:deleteButton" listener="#{tblPacientesController.resetParents}"/>
 				<p:ajax event="rowDblselect" onsuccess="document.getElementById('TblPacientesListForm:viewButton').click();"/>
 
-				<p:column sortBy="#{item.idPaciente}" filterBy="#{item.idPaciente}">
-					<f:facet name="header">
-						<h:outputText value="#{myBundle.ListTblPacientesTitle_idPaciente}"/>
-					</f:facet>
-					<h:outputText value="#{item.idPaciente}"/>
-				</p:column>
-
-
 				<p:column sortBy="#{item.cedula}" filterBy="#{item.cedula}">
 					<f:facet name="header">
 						<h:outputText value="#{myBundle.ListTblPacientesTitle_cedula}"/>
@@ -79,7 +71,13 @@
 					</f:facet>
 					<h:outputText value="#{item.nombre}"/>
 				</p:column>
-
+				
+				<p:column sortBy="#{item.direccion}" filterBy="#{item.direccion}">
+					<f:facet name="header">
+						<h:outputText value="Direccion"/>
+					</f:facet>
+					<h:outputText value="#{item.direccion}"/>
+				</p:column>
 
 				<p:column sortBy="#{item.fechaNace}" filterBy="#{item.fechaNace}">
 					<f:facet name="header">

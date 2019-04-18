@@ -111,6 +111,9 @@ public class TblPacientes implements Serializable {
 	@Column(name = "fechaReg")
     @Temporal(TemporalType.TIMESTAMP)
 	private Date fechaReg;
+	//////////////////////////
+	
+	//////////////////////////
 	@OneToMany(mappedBy = "idPaciente")
 	private Collection<TblDiagnotiscos> tblDiagnotiscosCollection;
 	@JoinColumn(name = "idArea", referencedColumnName = "idArea")
@@ -336,5 +339,7 @@ public class TblPacientes implements Serializable {
 	public String toString() {
 		return "modelo.TblPacientes[ idPaciente=" + idPaciente + " ]";
 	}
+	//////////////////////////////////////
 	
+	//////////////////////////////////////
 }

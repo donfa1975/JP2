@@ -90,7 +90,7 @@
 					<f:facet name="header">
 						<h:outputText value="#{myBundle.ListTblMatriculasTitle_idPaciente}"/>
 					</f:facet>
-					<h:outputText value="#{item.idPaciente.idPaciente}"/>
+					<h:outputText value="#{item.idPaciente.apellido}"/>
 				</p:column>
 
 				<ui:remove>
@@ -104,7 +104,7 @@
 
 			</p:dataTable>
 
-			<p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{tblMatriculasController.prepareCreate}" update=":TblMatriculasCreateForm" oncomplete="PF('TblMatriculasCreateDialog').show()"/>
+			<p:commandButton id="createButton" icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{tblMatriculasController.prepareCreate}" update=":TblMatriculasCreateForm" oncomplete="PF('TblMatriculasCreateDialog').show()"/>
 			<p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":TblMatriculasViewForm" oncomplete="PF('TblMatriculasViewDialog').show()" disabled="#{empty tblMatriculasController.selected}"/>
 			<p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":TblMatriculasEditForm" oncomplete="PF('TblMatriculasEditDialog').show()" disabled="#{empty tblMatriculasController.selected}"/>
 			<p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{tblMatriculasController.delete}" update=":growl,datalist" disabled="#{empty tblMatriculasController.selected}">

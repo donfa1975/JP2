@@ -78,7 +78,12 @@
 					</f:facet>
 					<h:outputText value="#{item.direccion}"/>
 				</p:column>
-
+				<p:column sortBy="#{item.telefono}" filterBy="#{item.telefono}">
+                        <f:facet name="header">
+                            <h:outputText value="#{myBundle.ListTblPacientesTitle_telefono}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.telefono}"/>
+                </p:column>
 				<p:column sortBy="#{item.fechaNace}" filterBy="#{item.fechaNace}">
 					<f:facet name="header">
 						<h:outputText value="#{myBundle.ListTblPacientesTitle_fechaNace}"/>
@@ -87,15 +92,22 @@
 						<f:convertDateTime pattern="dd/MM/yyyy" />
 					</h:outputText>
 				</p:column>
-
-
+				<p:column >
+					<f:facet name="header">
+						<h:outputText value="Edad"/>
+					</f:facet>
+					<h:outputText value="#{tblPacientesController.getEdad(item.fechaNace)}">
+						<!--<f:convertDateTime pattern="dd/MM/yyyy" /> -->
+					</h:outputText>
+				</p:column>	
+				<ui:remove>
 				<p:column sortBy="#{item.cedRepresentante}" filterBy="#{item.cedRepresentante}">
 					<f:facet name="header">
 						<h:outputText value="#{myBundle.ListTblPacientesTitle_cedRepresentante}"/>
 					</f:facet>
 					<h:outputText value="#{item.cedRepresentante}"/>
 				</p:column>
-
+				</ui:remove>
 				<ui:remove>
                     <p:column sortBy="#{item.nombreRepresentante}" filterBy="#{item.nombreRepresentante}">
                         <f:facet name="header">
@@ -136,14 +148,9 @@
                         <h:outputText value="#{item.direccion}"/>
                     </p:column>
 				</ui:remove>
-				<ui:remove>
-                    <p:column sortBy="#{item.telefono}" filterBy="#{item.telefono}">
-                        <f:facet name="header">
-                            <h:outputText value="#{myBundle.ListTblPacientesTitle_telefono}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.telefono}"/>
-                    </p:column>
-				</ui:remove>
+				
+                    
+				
 				<ui:remove>
                     <p:column sortBy="#{item.fechaReg}" filterBy="#{item.fechaReg}">
                         <f:facet name="header">
@@ -170,14 +177,14 @@
                         <h:outputText value="#{item.idCanton.idcanton}"/>
                     </p:column>
 				</ui:remove>
-				<ui:remove>
-                    <p:column sortBy="#{item.idOrigen.idorigen}" filterBy="#{item.idOrigen.idorigen}">
+				
+                    <p:column sortBy="#{item.idOrigen.origen}" filterBy="#{item.idOrigen.origen}">
                         <f:facet name="header">
                             <h:outputText value="#{myBundle.ListTblPacientesTitle_idOrigen}"/>
                         </f:facet>
-                        <h:outputText value="#{item.idOrigen.idorigen}"/>
+                        <h:outputText value="#{item.idOrigen.origen}"/>
                     </p:column>
-				</ui:remove>
+				
 				<ui:remove>
                     <p:column sortBy="#{item.idzona.idZona}" filterBy="#{item.idzona.idZona}">
                         <f:facet name="header">

@@ -53,22 +53,19 @@
                         <h:outputText value="#{myBundle.ViewTblPacientesLabel_telefono}"/>
                         <h:outputText value="#{tblPacientesController.selected.telefono}" title="#{myBundle.ViewTblPacientesTitle_telefono}"/>
 
-                        <h:outputText value="#{myBundle.ViewTblPacientesLabel_fechaReg}"/>
-                        <h:outputText value="#{tblPacientesController.selected.fechaReg}" title="#{myBundle.ViewTblPacientesTitle_fechaReg}">
-                            <f:convertDateTime pattern="dd/MM/yyyy" />
-                        </h:outputText>
-
-                        <h:outputText value="#{myBundle.ViewTblPacientesLabel_idArea}"/>
-                        <h:outputText value="#{tblPacientesController.selected.idArea.idArea}"/>
-
-                        <h:outputText value="#{myBundle.ViewTblPacientesLabel_idCanton}"/>
-                        <h:outputText value="#{tblPacientesController.selected.idCanton.idcanton}"/>
-
-                        <h:outputText value="#{myBundle.ViewTblPacientesLabel_idOrigen}"/>
-                        <h:outputText value="#{tblPacientesController.selected.idOrigen.idorigen}"/>
-
-                        <h:outputText value="#{myBundle.ViewTblPacientesLabel_idzona}"/>
-                        <h:outputText value="#{tblPacientesController.selected.idzona.idZona}"/>
+						<h:outputText value="#{myBundle.ViewTblPacientesLabel_idArea}"/>
+                        <h:outputText value="#{tblPacientesController.selected.idArea.area}"/>
+                  
+						<h:outputText value="#{myBundle.ViewTblPacientesLabel_idCanton}"/>
+                        <h:outputText value="#{tblPacientesController.selected.idCanton.canton}"/>
+						
+						<h:outputText value="#{myBundle.ViewTblPacientesLabel_idOrigen}"/>
+                        <h:outputText value="#{tblPacientesController.selected.idOrigen.origen}"/>
+						 
+						<h:outputText value="#{myBundle.ViewTblPacientesLabel_idzona}"/>
+                        <h:outputText value="#{tblPacientesController.selected.idzona.zona}"/>
+						
+						
                     </p:panelGrid>
 					<p:commandButton value="#{myBundle.Close}" onclick="PF('TblPacientesViewDialog').hide()"/>
                 </h:panelGroup>

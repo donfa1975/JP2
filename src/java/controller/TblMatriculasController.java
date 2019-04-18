@@ -2,10 +2,15 @@ package controller;
 
 import modelo.TblMatriculas;
 import facade.TblMatriculasFacade;
+import java.util.List;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 @Named(value = "tblMatriculasController")
 @ViewScoped
@@ -51,6 +56,18 @@ public class TblMatriculasController extends AbstractController<TblMatriculas> {
 		if (selected != null && idusuarioController.getSelected() == null) {
 			idusuarioController.setSelected(selected.getIdusuario());
 		}
+	}
+	
+	public List<TblMatriculas> getLista()
+	{
+		
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("JP2PU");
+        EntityManager em = emf.createEntityManager();
+		
+		Query q1=em.createQuery("select c from TblMatriculas c order by c.anio desc");
+		
+		return q1.getResultList();
+		
 	}
 
 }

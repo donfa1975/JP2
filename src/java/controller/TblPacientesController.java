@@ -6,12 +6,15 @@ import modelo.TblMatriculas;
 import modelo.TblCitas;
 import java.util.Collection;
 import facade.TblPacientesFacade;
+import java.time.LocalDate;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
-
+import java.time.Period;
+import java.time.ZoneId;
+import java.util.Date;
 @Named(value = "tblPacientesController")
 @ViewScoped
 public class TblPacientesController extends AbstractController<TblPacientes> {
@@ -188,6 +191,16 @@ public class TblPacientesController extends AbstractController<TblPacientes> {
 			FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("TblCitas_items", selectedTblCitasCollection);
 		}
 		return "/app/tblCitas/index";
+	}
+	
+	public int getEdad(Date fechanac)
+	{
+		LocalDate ahora=LocalDate.now();
+		LocalDate fe1=fechanac.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+		Period periodo=Period.between(fe1, ahora);
+		
+		return periodo.getYears();
+		
 	}
 
 }

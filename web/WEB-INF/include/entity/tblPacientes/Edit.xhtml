@@ -62,7 +62,6 @@
                                            itemValue="#{idAreaItem}"
                                            itemLabel="#{idAreaItem.area}"
 										   />
-
                         </p:selectOneMenu>
 
 						<p:outputLabel value="#{myBundle.EditTblPacientesLabel_idCanton}" for="idCanton" />
@@ -95,8 +94,8 @@
                                            itemValue="#{idzonaItem}"
                                            itemLabel="#{idzonaItem.zona}"
 										   />
-
                         </p:selectOneMenu>
+						
                     </p:panelGrid>
                     <p:commandButton actionListener="#{tblPacientesController.save}" value="#{myBundle.Save}" update="display,:TblPacientesListForm:datalist,:TblPacientesListForm:TblPacientesDataTableContextMenu,:growl" oncomplete="handleSubmit(xhr,status,args,PF('TblPacientesEditDialog'));">
                         <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>

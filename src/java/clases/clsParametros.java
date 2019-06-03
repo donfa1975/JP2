@@ -7,6 +7,7 @@ package clases;
 
 import java.util.List;
 import javax.naming.InitialContext;
+import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -25,9 +26,12 @@ public class clsParametros {
 	private List<TblOrigenes> _origenes;
 	private List<TblZonas> _zonas;
 	private List<TblTipoDiagnostico> _tipoDiag;
-
+	private List<TblAsiste> _asiste;
+	
+	
+	
 	public clsParametros() {
-		
+		loadData();
 	}
 	
 	public void loadData()
@@ -50,6 +54,8 @@ public class clsParametros {
 		Query q5=em.createQuery("select c from TblTipoDiagnostico c order by c.codigo");
 		_tipoDiag=q5.getResultList();
 		
+		Query q6=em.createQuery("select c from TblAsiste c");
+		_asiste=q6.getResultList();
 		
 	}
 	//////////////////////////////////
@@ -60,8 +66,76 @@ public class clsParametros {
 		
 		return ar;
 	}
+	public void addObjeto(Object o)
+	{
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("JP2PU");
+        EntityManager em = emf.createEntityManager();
+		try {
+			
+			UserTransaction t = (UserTransaction)new InitialContext().lookup("java:comp/UserTransaction");
+			t.begin();
+			em.joinTransaction();
+			
+			em.persist(o);
+			t.commit();
+			em.close();
+			emf.close();
+			} catch (Exception ex) {
+			
+		}
+	}
 	//////////////////////////////////
-	public String addArea(TblAreas area)
+	public void updateArea(Object o, String nuevo,int opcion)
+	{
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("JP2PU");
+        EntityManager em = emf.createEntityManager();
+		Query q=null;
+		
+		switch(opcion)
+		{
+			case 1:
+				q=em.createQuery("UPDATE TblAreas c set c.area=:p1 where c.idArea=:p2");
+				q.setParameter("p1", nuevo);
+				q.setParameter("p2", ((TblAreas)o).getIdArea());break;
+			case 2:
+				q=em.createQuery("UPDATE TblCantones c set c.canton=:p1 where c.idcanton=:p2");
+				q.setParameter("p1", nuevo);
+				q.setParameter("p2", ((TblCantones)o).getCanton());break;
+			case 3:
+				q=em.createQuery("UPDATE TblOrigenes c set c.origen=:p1 where c.idorigen=:p2");
+				q.setParameter("p1", nuevo);
+				q.setParameter("p2", ((TblOrigenes)o).getIdorigen());break;	
+			case 4:
+				q=em.createQuery("UPDATE TblZonas c set c.zona=:p1 where c.zona=:p2");
+				q.setParameter("p1", nuevo);
+				q.setParameter("p2", ((TblZonas)o).getIdZona());break;	
+			case 5:
+				q=em.createQuery("UPDATE TblAsiste c set c.asiste=:p1 where c.idasiste=:p2");
+				q.setParameter("p1", nuevo);
+				q.setParameter("p2", ((TblAsiste)o).getIdasiste());break;	
+				
+		}
+		
+		
+		
+		try {
+			
+			UserTransaction t = (UserTransaction)new InitialContext().lookup("java:comp/UserTransaction");
+			t.begin();
+			
+			em.joinTransaction();
+			
+			q.executeUpdate();
+				
+			t.commit();
+			em.close();
+			emf.close();
+			} catch (Exception ex) {
+			
+		}
+	}
+	//////////////////////////////////
+	/*public String addArea(TblAreas area)
 	{
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("JP2PU");
         EntityManager em = emf.createEntityManager();
@@ -80,7 +154,7 @@ public class clsParametros {
 			return ex.getMessage();
 		}
 		return "ok";
-	}
+	}*/
 	
 //<editor-fold desc="propiedades">
 	public List<TblAreas> getAreas() {
@@ -122,8 +196,14 @@ public class clsParametros {
 	public void setTipoDiag(List<TblTipoDiagnostico> _tipoDiag) {
 		this._tipoDiag = _tipoDiag;
 	}
+	public List<TblAsiste> getAsiste() {
+		return _asiste;
+	}
+
+	public void setAsiste(List<TblAsiste> _asiste) {
+		this._asiste = _asiste;
+	}
+	
+
 //</editor-fold>
-	
-	
-	
 }

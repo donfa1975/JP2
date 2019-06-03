@@ -33,9 +33,32 @@ public class TblPacientesController extends AbstractController<TblPacientes> {
 	private boolean isTblMatriculasCollectionEmpty;
 	private boolean isTblCitasCollectionEmpty;
 
+	private TblCitas nCita;
+
+	private Collection<TblDiagnotiscos> diagnosticos;
+	/**
+	 * Get the value of nCita
+	 *
+	 * @return the value of nCita
+	 */
+	public TblCitas getnCita() {
+		return nCita;
+	}
+
+	/**
+	 * Set the value of nCita
+	 *
+	 * @param nCita new value of nCita
+	 */
+	public void setnCita(TblCitas nCita) {
+		this.nCita = nCita;
+	}
+
+	
 	public TblPacientesController() {
 		// Inform the Abstract parent controller of the concrete TblPacientes Entity
 		super(TblPacientes.class);
+		nCita=null;
 	}
 
 	/**
@@ -201,6 +224,43 @@ public class TblPacientesController extends AbstractController<TblPacientes> {
 		
 		return periodo.getYears();
 		
+	}
+	public void prepareNuevaCita(ActionEvent event) {
+		TblPacientes selected = this.getSelected();
+		if(selected!=null)
+		{
+			nCita=new TblCitas();
+			nCita.setIdCita(0);
+			nCita.setIdPaciente(selected);
+			
+		}
+		
+	}
+
+	public void guardar(ActionEvent event)
+	{
+		this.getSelected().setIdPaciente(0);
+		this.saveNew();
+	}
+	
+	public void preparaDiags(ActionEvent event)
+	{
+		if(this.getSelected()!=null)
+		{
+			this.diagnosticos=this.getSelected().getTblDiagnotiscosCollection();
+		}
+		else
+		{
+			this.diagnosticos=null;
+		}
+	}
+
+	public Collection<TblDiagnotiscos> getDiagnosticos() {
+		return diagnosticos;
+	}
+
+	public void setDiagnosticos(Collection<TblDiagnotiscos> diagnosticos) {
+		this.diagnosticos = diagnosticos;
 	}
 
 }

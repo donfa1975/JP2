@@ -122,7 +122,7 @@
 
 			</p:dataTable>
 
-			<p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{tblCitasController.prepareCreate}" update=":TblCitasCreateForm" oncomplete="PF('TblCitasCreateDialog').show()"/>
+			<p:commandButton id="createButton" icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{tblCitasController.prepareCreate}" update=":TblCitasCreateForm" oncomplete="PF('TblCitasCreateDialog').show()"/>
 			<p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":TblCitasViewForm" oncomplete="PF('TblCitasViewDialog').show()" disabled="#{empty tblCitasController.selected}"/>
 			<p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":TblCitasEditForm" oncomplete="PF('TblCitasEditDialog').show()" disabled="#{empty tblCitasController.selected}"/>
 			<p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{tblCitasController.delete}" update=":growl,datalist" disabled="#{empty tblCitasController.selected}">

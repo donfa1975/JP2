@@ -39,12 +39,14 @@ public class TblDiagnotiscos implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @NotNull
     @Column(name = "idDiagnostico")
 	private Integer idDiagnostico;
-	@Column(name = "fechaDiagnostico")
+	@Basic(optional = false)
+    @NotNull
+    @Column(name = "fechaDiagnostico")
     @Temporal(TemporalType.TIMESTAMP)
 	private Date fechaDiagnostico;
 	@Column(name = "idmedico")
@@ -64,6 +66,11 @@ public class TblDiagnotiscos implements Serializable {
 
 	public TblDiagnotiscos(Integer idDiagnostico) {
 		this.idDiagnostico = idDiagnostico;
+	}
+
+	public TblDiagnotiscos(Integer idDiagnostico, Date fechaDiagnostico) {
+		this.idDiagnostico = idDiagnostico;
+		this.fechaDiagnostico = fechaDiagnostico;
 	}
 
 	public Integer getIdDiagnostico() {

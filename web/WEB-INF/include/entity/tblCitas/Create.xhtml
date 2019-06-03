@@ -12,50 +12,35 @@
 
             <h:form id="TblCitasCreateForm">
 
-                <h:panelGroup id="display" rendered="#{tblCitasController.selected != null}">
+                <h:panelGroup id="display" >
                     <p:panelGrid columns="2" columnClasses="column">
 
+						<p:outputLabel value="Paciente" />
+                        <p:outputLabel id="nombreP" value="#{nCitasController.nombre}"/>
+
 						<p:outputLabel value="#{myBundle.CreateTblCitasLabel_fecha}" for="fecha" />
-                        <p:calendar id="fecha" pattern="MM/dd/yyyy" value="#{tblCitasController.selected.fecha}" title="#{myBundle.CreateTblCitasTitle_fecha}"  showOn="button"/>
+                        <p:calendar id="fecha" pattern="dd/MM/yyyy" value="#{nCitasController.fecha}"  title="#{myBundle.CreateTblCitasTitle_fecha}" timeZone="GMT-5"  showOn="button">
+							
+						</p:calendar>
 
-						<p:outputLabel value="#{myBundle.CreateTblCitasLabel_hora}" for="hora" />
-                        <p:inputText id="hora" value="#{tblCitasController.selected.hora}" title="#{myBundle.CreateTblCitasTitle_hora}" size="5" maxlength="5"/>
-
-						<p:outputLabel value="#{myBundle.CreateTblCitasLabel_fechaReg}" for="fechaReg" />
-                        <p:calendar id="fechaReg" pattern="dd/MM/yyyy" value="#{tblCitasController.selected.fechaReg}" title="#{myBundle.CreateTblCitasTitle_fechaReg}" required="true" requiredMessage="#{myBundle.CreateTblCitasRequiredMessage_fechaReg}" showOn="button"/>
-
-						<p:outputLabel value="#{myBundle.CreateTblCitasLabel_idusuario}" for="idusuario" />
-                        <p:inputText id="idusuario" value="#{tblCitasController.selected.idusuario}" title="#{myBundle.CreateTblCitasTitle_idusuario}"/>
-
-						<p:outputLabel value="#{myBundle.CreateTblCitasLabel_ejecutada}" for="ejecutada" />
-                        <p:selectBooleanCheckbox id="ejecutada" value="#{tblCitasController.selected.ejecutada}" />
-
-						<p:outputLabel value="#{myBundle.CreateTblCitasLabel_numeroCita}" for="numeroCita" />
-                        <p:inputText id="numeroCita" value="#{tblCitasController.selected.numeroCita}" title="#{myBundle.CreateTblCitasTitle_numeroCita}" size="20" maxlength="20"/>
-
-						<p:outputLabel value="#{myBundle.CreateTblCitasLabel_idAccion}" for="idAccion" />
-                        <p:selectOneMenu id="idAccion" value="#{tblCitasController.selected.idAccion}"  converter="tblAccionesConverter">
+						<p:outputLabel value="Hora" for="hora" />
+                        <p:calendar id="hora" value="#{nCitasController.hora}" pattern="HH:mm"  title="Hora" timeOnly="true" timeZone="GMT-5"/>
+                        
+						
+						<p:outputLabel value="Motivo de la cita" for="idAccion" />
+						<p:selectOneMenu id="idAccion" value="#{nCitasController.accion}"  converter="tblAccionesConverter">
                             <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
                             <f:selectItems value="#{tblAccionesController.items}"
                                            var="idAccionItem"
                                            itemValue="#{idAccionItem}"
-                                           itemLabel="#{idAccionItem.idAccion.toString()}"
+                                           itemLabel="#{idAccionItem.accion}"
 										   />
 
                         </p:selectOneMenu>
-
-						<p:outputLabel value="#{myBundle.CreateTblCitasLabel_idPaciente}" for="idPaciente" />
-                        <p:selectOneMenu id="idPaciente" value="#{tblCitasController.selected.idPaciente}"  converter="tblPacientesConverter">
-                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{tblPacientesController.items}"
-                                           var="idPacienteItem"
-                                           itemValue="#{idPacienteItem}"
-                                           itemLabel="#{idPacienteItem.idPaciente.toString()}"
-										   />
-
-                        </p:selectOneMenu>
+						
+                        
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{tblCitasController.saveNew}" value="#{myBundle.Save}" update="display,:TblCitasListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('TblCitasCreateDialog'));">
+                    <p:commandButton  value="#{myBundle.Save}" actionListener="#{nCitasController.saveNew}" oncomplete="PF('TblCitasCreateDialog').hide()">
                         <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
                     </p:commandButton>
 

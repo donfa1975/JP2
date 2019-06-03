@@ -20,6 +20,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -54,7 +55,7 @@ public class TblPacientes implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @NotNull
     @Column(name = "idPaciente")
@@ -111,20 +112,25 @@ public class TblPacientes implements Serializable {
 	@Column(name = "fechaReg")
     @Temporal(TemporalType.TIMESTAMP)
 	private Date fechaReg;
-	//////////////////////////
-	
-	//////////////////////////
 	@OneToMany(mappedBy = "idPaciente")
 	private Collection<TblDiagnotiscos> tblDiagnotiscosCollection;
 	@JoinColumn(name = "idArea", referencedColumnName = "idArea")
     @ManyToOne
 	private TblAreas idArea;
+	@JoinColumn(name = "idasiste", referencedColumnName = "idasiste")
+    @ManyToOne(optional = false)
+	private TblAsiste idasiste;
 	@JoinColumn(name = "idCanton", referencedColumnName = "idcanton")
     @ManyToOne
 	private TblCantones idCanton;
 	@JoinColumn(name = "idOrigen", referencedColumnName = "idorigen")
     @ManyToOne
 	private TblOrigenes idOrigen;
+	@OneToOne(cascade = CascadeType.ALL, mappedBy = "tblPacientes1")
+	private TblPacientes tblPacientes;
+	@JoinColumn(name = "idPaciente", referencedColumnName = "idPaciente", insertable = false, updatable = false)
+    @OneToOne(optional = false)
+	private TblPacientes tblPacientes1;
 	@JoinColumn(name = "idzona", referencedColumnName = "idZona")
     @ManyToOne
 	private TblZonas idzona;
@@ -273,6 +279,14 @@ public class TblPacientes implements Serializable {
 		this.idArea = idArea;
 	}
 
+	public TblAsiste getIdasiste() {
+		return idasiste;
+	}
+
+	public void setIdasiste(TblAsiste idasiste) {
+		this.idasiste = idasiste;
+	}
+
 	public TblCantones getIdCanton() {
 		return idCanton;
 	}
@@ -287,6 +301,22 @@ public class TblPacientes implements Serializable {
 
 	public void setIdOrigen(TblOrigenes idOrigen) {
 		this.idOrigen = idOrigen;
+	}
+
+	public TblPacientes getTblPacientes() {
+		return tblPacientes;
+	}
+
+	public void setTblPacientes(TblPacientes tblPacientes) {
+		this.tblPacientes = tblPacientes;
+	}
+
+	public TblPacientes getTblPacientes1() {
+		return tblPacientes1;
+	}
+
+	public void setTblPacientes1(TblPacientes tblPacientes1) {
+		this.tblPacientes1 = tblPacientes1;
 	}
 
 	public TblZonas getIdzona() {
@@ -339,7 +369,5 @@ public class TblPacientes implements Serializable {
 	public String toString() {
 		return "modelo.TblPacientes[ idPaciente=" + idPaciente + " ]";
 	}
-	//////////////////////////////////////
 	
-	//////////////////////////////////////
 }

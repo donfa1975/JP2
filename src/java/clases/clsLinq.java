@@ -6,15 +6,16 @@
 package clases;
 
 import facade.TblMatriculasFacade;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
-import modelo.TblAreas;
-import modelo.TblMatriculas;
-import modelo.TblPacientes;
+import modelo.*;
+
 
 /**
  *
@@ -22,7 +23,7 @@ import modelo.TblPacientes;
  */
 public class clsLinq {
 	
-	public String matricular(TblPacientes p, TblAreas a, int anio)
+	public String matricular(TblPacientes p, TblAreas a, int anio,int idusuario)
 	{
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("JP2PU");
         EntityManager em = emf.createEntityManager();
@@ -31,9 +32,15 @@ public class clsLinq {
 		//q1.setParameter("p", p.getIdPaciente());
 		q1.setParameter("anio", anio);
 		
+		Query qu=em.createQuery("select c from TblUsuarios c where c.idUsuario=:idusu");
+		//q1.setParameter("p", p.getIdPaciente());
+		qu.setParameter("idusu", idusuario);
+		
+		TblUsuarios usuario=(TblUsuarios)qu.getSingleResult();
+		
 		List<TblMatriculas> l=q1.getResultList();
 		
-		Query q2=em.createQuery("Update TblPacientes c set c.idArea=:ar where c.idPaciente=:id");
+		Query q2=em.createQuery("select c from TblPacientes c where c.idPaciente=:id");
 		q2.setParameter("ar", a);
 		q2.setParameter("id", p.getIdPaciente());
 		q2.executeUpdate();
@@ -59,7 +66,14 @@ public class clsLinq {
 		}
 		
 		numMat=String.format("%s%s-%s", pred,String.valueOf(contar),String.valueOf(anio));
-		
+		/////////////////
+		TblMatriculas nueva=new TblMatriculas();
+		nueva.setAnio(anio);
+		nueva.setFechaMat(Date.valueOf(LocalDate.now()));
+		nueva.setIdMatricula(0);
+		nueva.setIdPaciente(p);
+		nueva.setIdusuario(usuario);
+		/////////////////
 		TblMatriculasFacade matC;
 		matC = new TblMatriculasFacade();
 		

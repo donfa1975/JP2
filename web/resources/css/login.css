@@ -25,6 +25,19 @@ body{
 	padding-right: 20px;
 	padding-top: 5px;
 }
+.caja2{
+	background: #FFFFFF;
+	box-shadow: 5px 5px gray;
+	width: 60%;
+	height: 60%;
+	margin-top: 3%;
+	margin-left: auto;
+	margin-right: auto;
+	border: black 2px groove;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-top: 5px;
+}
 
 .claseError{
 	color: #f03b04;

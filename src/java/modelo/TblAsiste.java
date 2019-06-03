@@ -8,6 +8,7 @@ package modelo;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,55 +28,48 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author fabricio.diaz
  */
 @Entity
-@Table(name = "tblCantones")
+@Table(name = "tblAsiste")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name = "TblCantones.findAll", query = "SELECT t FROM TblCantones t")
-	, @NamedQuery(name = "TblCantones.findByIdcanton", query = "SELECT t FROM TblCantones t WHERE t.idcanton = :idcanton")
-	, @NamedQuery(name = "TblCantones.findByCanton", query = "SELECT t FROM TblCantones t WHERE t.canton = :canton")})
-public class TblCantones implements Serializable {
+	@NamedQuery(name = "TblAsiste.findAll", query = "SELECT t FROM TblAsiste t")
+	, @NamedQuery(name = "TblAsiste.findByIdasiste", query = "SELECT t FROM TblAsiste t WHERE t.idasiste = :idasiste")
+	, @NamedQuery(name = "TblAsiste.findByAsiste", query = "SELECT t FROM TblAsiste t WHERE t.asiste = :asiste")})
+public class TblAsiste implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @NotNull
-    @Column(name = "idcanton")
-	private Integer idcanton;
-	@Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 50)
-    @Column(name = "canton")
-	private String canton;
-	@OneToMany(mappedBy = "idCanton")
+    @Column(name = "idasiste")
+	private Integer idasiste;
+	@Size(max = 500)
+    @Column(name = "asiste")
+	private String asiste;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "idasiste")
 	private Collection<TblPacientes> tblPacientesCollection;
 
-	public TblCantones() {
+	public TblAsiste() {
 	}
 
-	public TblCantones(Integer idcanton) {
-		this.idcanton = idcanton;
+	public TblAsiste(Integer idasiste) {
+		this.idasiste = idasiste;
 	}
 
-	public TblCantones(Integer idcanton, String canton) {
-		this.idcanton = idcanton;
-		this.canton = canton;
+	public Integer getIdasiste() {
+		return idasiste;
 	}
 
-	public Integer getIdcanton() {
-		return idcanton;
+	public void setIdasiste(Integer idasiste) {
+		this.idasiste = idasiste;
 	}
 
-	public void setIdcanton(Integer idcanton) {
-		this.idcanton = idcanton;
+	public String getAsiste() {
+		return asiste;
 	}
 
-	public String getCanton() {
-		return canton;
-	}
-
-	public void setCanton(String canton) {
-		this.canton = canton;
+	public void setAsiste(String asiste) {
+		this.asiste = asiste;
 	}
 
 	@XmlTransient
@@ -90,18 +84,18 @@ public class TblCantones implements Serializable {
 	@Override
 	public int hashCode() {
 		int hash = 0;
-		hash += (idcanton != null ? idcanton.hashCode() : 0);
+		hash += (idasiste != null ? idasiste.hashCode() : 0);
 		return hash;
 	}
 
 	@Override
 	public boolean equals(Object object) {
 		// TODO: Warning - this method won't work in the case the id fields are not set
-		if (!(object instanceof TblCantones)) {
+		if (!(object instanceof TblAsiste)) {
 			return false;
 		}
-		TblCantones other = (TblCantones) object;
-		if ((this.idcanton == null && other.idcanton != null) || (this.idcanton != null && !this.idcanton.equals(other.idcanton))) {
+		TblAsiste other = (TblAsiste) object;
+		if ((this.idasiste == null && other.idasiste != null) || (this.idasiste != null && !this.idasiste.equals(other.idasiste))) {
 			return false;
 		}
 		return true;
@@ -109,7 +103,7 @@ public class TblCantones implements Serializable {
 
 	@Override
 	public String toString() {
-		return "modelo.TblCantones[ idcanton=" + idcanton + " ]";
+		return "modelo.TblAsiste[ idasiste=" + idasiste + " ]";
 	}
 	
 }

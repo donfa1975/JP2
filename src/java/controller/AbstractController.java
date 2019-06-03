@@ -200,6 +200,14 @@ public abstract class AbstractController<T> implements Serializable {
 			lazyItems = null; // Invalidate list of lazy items to trigger re-query.
 		}
 	}
+	public void saveNew() {
+		String msg = ResourceBundle.getBundle("/MyBundle").getString(itemClass.getSimpleName() + "Created");
+		persist(PersistAction.CREATE, msg);
+		if (!isValidationFailed()) {
+			items = null; // Invalidate list of items to trigger re-query.
+			lazyItems = null; // Invalidate list of lazy items to trigger re-query.
+		}
+	}
 
 	/**
 	 * Remove an existing item from the data layer.

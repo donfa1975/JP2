@@ -89,7 +89,7 @@
                         </p:selectOneMenu>
 						
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{tblPacientesController.saveNew}" value="#{myBundle.Save}" update="display,:TblPacientesListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('TblPacientesCreateDialog'));">
+                    <p:commandButton actionListener="#{tblPacientesController.guardar}" value="#{myBundle.Save}" update="display,:TblPacientesListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('TblPacientesCreateDialog'));">
                         <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
                     </p:commandButton>
 

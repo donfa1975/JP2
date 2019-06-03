@@ -67,9 +67,15 @@
 						
 						
                     </p:panelGrid>
+				<p:dataList value="#{tblPacientesController.diagnosticos}" var="d1">
+					<f:facet name="header">
+						Diagnósticos
+					</f:facet>
+					<h:outputText value="#{d1.idTipoDiagnostico.codigo}, #{d1.idTipoDiagnostico.diagnostico}"/>
+				</p:dataList>	
 					<p:commandButton value="#{myBundle.Close}" onclick="PF('TblPacientesViewDialog').hide()"/>
                 </h:panelGroup>
-
+				
             </h:form>
 
         </p:dialog>

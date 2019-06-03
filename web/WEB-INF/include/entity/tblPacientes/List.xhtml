@@ -16,12 +16,9 @@
 				<p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('TblPacientesListForm:deleteButton').click();" icon="ui-icon-trash"/>
 				<p:separator/>
 				<p:menuitem value="#{myBundle.TblPacientesMenuItem_tblDiagnotiscosCollection}" icon="ui-icon-search"  action="#{tblPacientesController.navigateTblDiagnotiscosCollection}" disabled="#{tblPacientesController.isTblDiagnotiscosCollectionEmpty}" ajax="false"/>  
-				<p:menuitem value="#{myBundle.TblPacientesMenuItem_idArea}" icon="ui-icon-search"  actionListener="#{tblPacientesController.prepareIdArea}" update=":TblAreasViewForm" oncomplete="PF('TblAreasViewDialog').show()" disabled="#{empty tblPacientesController.selected.idArea}"/>  
-				<p:menuitem value="#{myBundle.TblPacientesMenuItem_idCanton}" icon="ui-icon-search"  actionListener="#{tblPacientesController.prepareIdCanton}" update=":TblCantonesViewForm" oncomplete="PF('TblCantonesViewDialog').show()" disabled="#{empty tblPacientesController.selected.idCanton}"/>  
-				<p:menuitem value="#{myBundle.TblPacientesMenuItem_idOrigen}" icon="ui-icon-search"  actionListener="#{tblPacientesController.prepareIdOrigen}" update=":TblOrigenesViewForm" oncomplete="PF('TblOrigenesViewDialog').show()" disabled="#{empty tblPacientesController.selected.idOrigen}"/>  
-				<p:menuitem value="#{myBundle.TblPacientesMenuItem_idzona}" icon="ui-icon-search"  actionListener="#{tblPacientesController.prepareIdzona}" update=":TblZonasViewForm" oncomplete="PF('TblZonasViewDialog').show()" disabled="#{empty tblPacientesController.selected.idzona}"/>  
-				<p:menuitem value="#{myBundle.TblPacientesMenuItem_tblMatriculasCollection}" icon="ui-icon-search"  action="#{tblPacientesController.navigateTblMatriculasCollection}" disabled="#{tblPacientesController.isTblMatriculasCollectionEmpty}" ajax="false"/>  
-				<p:menuitem value="#{myBundle.TblPacientesMenuItem_tblCitasCollection}" icon="ui-icon-search"  action="#{tblPacientesController.navigateTblCitasCollection}" disabled="#{tblPacientesController.isTblCitasCollectionEmpty}" ajax="false"/>  
+				<p:menuitem value="Crear cita" onclick="document.getElementById('TblPacientesListForm:citaButton').click();" icon="ui-icon-calendar"/>  
+				<p:menuitem value="Crear Matricula" icon="ui-icon-search"  action="#{tblPacientesController.navigateTblDiagnotiscosCollection}" disabled="#{tblPacientesController.isTblDiagnotiscosCollectionEmpty}" ajax="false"/>  
+				
 			</p:contextMenu>
 			<p:dataTable id="datalist"
 						 value="#{tblPacientesController.items}"
@@ -196,15 +193,22 @@
 
 			</p:dataTable>
 
-			<p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{tblPacientesController.prepareCreate}" update=":TblPacientesCreateForm" oncomplete="PF('TblPacientesCreateDialog').show()"/>
-			<p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":TblPacientesViewForm" oncomplete="PF('TblPacientesViewDialog').show()" disabled="#{empty tblPacientesController.selected}"/>
+			<p:commandButton id="createButton" icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{tblPacientesController.prepareCreate}" update=":TblPacientesCreateForm" oncomplete="PF('TblPacientesCreateDialog').show()"/>
+			<p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" actionListener="#{tblPacientesController.preparaDiags}" update=":TblPacientesViewForm" oncomplete="PF('TblPacientesViewDialog').show()" disabled="#{empty tblPacientesController.selected}"/>
 			<p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":TblPacientesEditForm" oncomplete="PF('TblPacientesEditDialog').show()" disabled="#{empty tblPacientesController.selected}"/>
 			<p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{tblPacientesController.delete}" update=":growl,datalist" disabled="#{empty tblPacientesController.selected}">
 				<p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
 			</p:commandButton>
-
+			<p:commandButton id="citaButton" style="visibility: hidden;" icon="ui-icon-trash"  value="Crear cita" 
+							 actionListener="#{nCitasController.prepareIdPaciente}"  
+							 update=":TblCitasCreateForm" oncomplete="PF('TblCitasCreateDialog').show()"/>
 		</p:panel>
+		
+		
 		<ui:include src="/WEB-INF/include/confirmation.xhtml"/>
+		
+		
+		
 	</h:form>
 
 </ui:composition>
